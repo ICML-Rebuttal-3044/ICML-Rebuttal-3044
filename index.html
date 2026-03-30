@@ -21,6 +21,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -31,9 +35,9 @@
     }
 
     .page {
-      width: min(98vw, 2000px);
+      width: min(96vw, 1850px);
       margin: 24px auto 40px auto;
-      padding: 0 12px;
+      padding: 0 18px;
     }
 
     .hero {
@@ -73,22 +77,31 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
+      scroll-margin-top: 24px;
     }
 
     .section h2 {
       margin: 0 0 18px 0;
-      font-size: 27px;
+      font-size: 28px;
       color: var(--accent);
       border-bottom: 1px solid var(--border);
       padding-bottom: 10px;
     }
 
-    .section-subtitle {
-      margin: -4px 0 18px 0;
-      font-size: 16px;
-      color: var(--subtext);
-      font-weight: 600;
+    .subblock {
+      border: 1px solid #e8edf3;
+      background: #fcfdff;
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-top: 18px;
+    }
+
+    .subblock h3 {
+      margin: 0 0 14px 0;
+      font-size: 20px;
+      color: #173a5a;
+      font-weight: 700;
     }
 
     .toolbar {
@@ -107,7 +120,6 @@
       font-size: 16px;
       color: var(--accent);
       font-weight: 700;
-      letter-spacing: 0.01em;
       background: #f3f7fb;
       border: 1px solid #d7e3f0;
       border-radius: 999px;
@@ -116,6 +128,7 @@
 
     .toggle-group {
       display: inline-flex;
+      flex-wrap: wrap;
       background: #f1f5f9;
       border: 1px solid var(--border);
       border-radius: 999px;
@@ -197,8 +210,50 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
-    .divider-space {
-      height: 8px;
+    .floating-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-nav.left {
+      left: 14px;
+    }
+
+    .floating-nav.right {
+      right: 14px;
+    }
+
+    .floating-nav a {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--accent);
+      border: 1px solid #d7e3f0;
+      border-radius: 12px;
+      padding: 12px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .floating-nav a:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 1400px) {
+      .floating-nav {
+        display: none;
+      }
     }
 
     @media (max-width: 900px) {
@@ -215,6 +270,10 @@
         padding: 20px 16px;
       }
 
+      .subblock {
+        padding: 18px 14px;
+      }
+
       .gallery {
         grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
         gap: 10px;
@@ -224,10 +283,25 @@
         font-size: 15px;
         padding: 7px 12px;
       }
+
+      .toggle-btn {
+        padding: 7px 12px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating-nav left">
+    <a href="#ood-section">OOD Observation Generation</a>
+    <a href="#real-world-section">Real-World Experiments</a>
+  </div>
+
+  <div class="floating-nav right">
+    <a href="#ood-section">OOD Observation Generation</a>
+    <a href="#real-world-section">Real-World Experiments</a>
+  </div>
+
   <div class="page">
     <div class="hero">
       <h1>ViMoGen: Enhancing VLA Post-Training via Kinematics-Aware Video Synthesis</h1>
@@ -235,115 +309,129 @@
       <div class="subsubtitle">Anonymous Author</div>
     </div>
 
-    <div class="section">
+    <div class="section" id="ood-section">
       <h2>Out-of-Distribution Observation Generation</h2>
-      <div class="section-subtitle">Case 1: BBQ Sauce</div>
 
-      <div class="toolbar">
-        <div class="toolbar-label">Target-Object Rotation Setting</div>
-        <div class="toggle-group" aria-label="Rotation switch for bbq sauce">
-          <button class="toggle-btn active" id="btn-bbq-45">45°</button>
-          <button class="toggle-btn" id="btn-bbq-90">90°</button>
+      <div class="subblock">
+        <h3>Target-Object Rotation Setting: Case 1: BBQ Sauce</h3>
+        <div class="toolbar">
+          <div class="toolbar-label">Rotation Angle</div>
+          <div class="toggle-group" aria-label="Rotation switch for bbq sauce">
+            <button class="toggle-btn active" id="btn-bbq-45">45°</button>
+            <button class="toggle-btn" id="btn-bbq-90">90°</button>
+          </div>
         </div>
+        <div class="caption-box">
+          <div class="caption-tag">Current setting</div>
+          <p class="caption-text" id="caption-bbq"></p>
+        </div>
+        <div class="gallery" id="gallery-bbq"></div>
       </div>
 
-      <div class="caption-box">
-        <div class="caption-tag">Current setting</div>
-        <p class="caption-text" id="caption-bbq"></p>
+      <div class="subblock">
+        <h3>Target-Object Rotation Setting: Case 2: Chocolate Pudding</h3>
+        <div class="toolbar">
+          <div class="toolbar-label">Rotation Angle</div>
+          <div class="toggle-group" aria-label="Rotation switch for chocolate pudding">
+            <button class="toggle-btn active" id="btn-pudding-45">45°</button>
+            <button class="toggle-btn" id="btn-pudding-90">90°</button>
+          </div>
+        </div>
+        <div class="caption-box">
+          <div class="caption-tag">Current setting</div>
+          <p class="caption-text" id="caption-pudding"></p>
+        </div>
+        <div class="gallery" id="gallery-pudding"></div>
       </div>
 
-      <div class="gallery" id="gallery-bbq"></div>
+      <div class="subblock">
+        <h3>Target-Object Rotation Setting: Case 3: Milk</h3>
+        <div class="toolbar">
+          <div class="toolbar-label">Rotation Angle</div>
+          <div class="toggle-group" aria-label="Rotation switch for milk">
+            <button class="toggle-btn active" id="btn-milk-45">45°</button>
+            <button class="toggle-btn" id="btn-milk-90">90°</button>
+          </div>
+        </div>
+        <div class="caption-box">
+          <div class="caption-tag">Current setting</div>
+          <p class="caption-text" id="caption-milk"></p>
+        </div>
+        <div class="gallery" id="gallery-milk"></div>
+      </div>
+
+      <div class="subblock">
+        <h3>Scene Lighting Perturbation Setting: Shadowed Lighting</h3>
+        <div class="toolbar">
+          <div class="toolbar-label">Case Selection</div>
+          <div class="toggle-group" aria-label="Case switch for shadowed lighting">
+            <button class="toggle-btn active" id="btn-light-case1">Case 1</button>
+            <button class="toggle-btn" id="btn-light-case2">Case 2</button>
+            <button class="toggle-btn" id="btn-light-case3">Case 3</button>
+          </div>
+        </div>
+        <div class="caption-box">
+          <div class="caption-tag">Current setting</div>
+          <p class="caption-text" id="caption-lighting"></p>
+        </div>
+        <div class="gallery" id="gallery-lighting"></div>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Out-of-Distribution Observation Generation</h2>
-      <div class="section-subtitle">Case 2: Chocolate Pudding</div>
+    <div class="section" id="real-world-section">
+      <h2>Real-World Experiments</h2>
 
-      <div class="toolbar">
-        <div class="toolbar-label">Target-Object Rotation Setting</div>
-        <div class="toggle-group" aria-label="Rotation switch for chocolate pudding">
-          <button class="toggle-btn active" id="btn-pudding-45">45°</button>
-          <button class="toggle-btn" id="btn-pudding-90">90°</button>
+      <div class="subblock">
+        <h3>Qualitative Cases</h3>
+        <div class="toolbar">
+          <div class="toolbar-label">Case Selection</div>
+          <div class="toggle-group" aria-label="Case switch for real-world experiments">
+            <button class="toggle-btn active" id="btn-real-case1">Case 1</button>
+            <button class="toggle-btn" id="btn-real-case2">Case 2</button>
+            <button class="toggle-btn" id="btn-real-case3">Case 3</button>
+            <button class="toggle-btn" id="btn-real-case4">Case 4</button>
+            <button class="toggle-btn" id="btn-real-case5">Case 5</button>
+            <button class="toggle-btn" id="btn-real-case6">Case 6</button>
+            <button class="toggle-btn" id="btn-real-case7">Case 7</button>
+            <button class="toggle-btn" id="btn-real-case8">Case 8</button>
+            <button class="toggle-btn" id="btn-real-case9">Case 9</button>
+            <button class="toggle-btn" id="btn-real-case10">Case 10</button>
+          </div>
         </div>
-      </div>
-
-      <div class="caption-box">
-        <div class="caption-tag">Current setting</div>
-        <p class="caption-text" id="caption-pudding"></p>
-      </div>
-
-      <div class="gallery" id="gallery-pudding"></div>
-    </div>
-
-    <div class="section">
-      <h2>Out-of-Distribution Observation Generation</h2>
-      <div class="section-subtitle">Case 3: Milk</div>
-
-      <div class="toolbar">
-        <div class="toolbar-label">Target-Object Rotation Setting</div>
-        <div class="toggle-group" aria-label="Rotation switch for milk">
-          <button class="toggle-btn active" id="btn-milk-45">45°</button>
-          <button class="toggle-btn" id="btn-milk-90">90°</button>
+        <div class="caption-box">
+          <div class="caption-tag">Current setting</div>
+          <p class="caption-text" id="caption-real"></p>
         </div>
+        <div class="gallery" id="gallery-real"></div>
       </div>
-
-      <div class="caption-box">
-        <div class="caption-tag">Current setting</div>
-        <p class="caption-text" id="caption-milk"></p>
-      </div>
-
-      <div class="gallery" id="gallery-milk"></div>
-    </div>
-
-    <div class="section">
-      <h2>Out-of-Distribution Observation Generation</h2>
-      <div class="section-subtitle">Scene Lighting Perturbation</div>
-
-      <div class="toolbar">
-        <div class="toolbar-label">Scene Lighting Perturbation Setting</div>
-        <div class="toggle-group" aria-label="Case switch for scene lighting perturbation">
-          <button class="toggle-btn active" id="btn-light-case1">Case 1</button>
-          <button class="toggle-btn" id="btn-light-case2">Case 2</button>
-          <button class="toggle-btn" id="btn-light-case3">Case 3</button>
-        </div>
-      </div>
-
-      <div class="caption-box">
-        <div class="caption-tag">Current setting</div>
-        <p class="caption-text" id="caption-lighting"></p>
-      </div>
-
-      <div class="gallery" id="gallery-lighting"></div>
     </div>
   </div>
 
   <script>
-    function setupGallery(config) {
-      const gallery = document.getElementById(config.galleryId);
+    function renderImageSeries(galleryId, prefix) {
+      const gallery = document.getElementById(galleryId);
+      gallery.innerHTML = "";
+      for (let i = 0; i <= 36; i++) {
+        const img = document.createElement("img");
+        img.src = `assets/${prefix}_${i}.jpg`;
+        img.alt = `${prefix}_${i}`;
+        img.loading = "lazy";
+        gallery.appendChild(img);
+      }
+    }
+
+    function setupRotationGallery(config) {
       const caption = document.getElementById(config.captionId);
       const btn45 = document.getElementById(config.btn45Id);
       const btn90 = document.getElementById(config.btn90Id);
 
-      function renderImages(prefix) {
-        gallery.innerHTML = "";
-        for (let i = 0; i <= 36; i++) {
-          const img = document.createElement("img");
-          img.src = `assets/${prefix}_${i}.jpg`;
-          img.alt = `${config.objectName} OOD observation ${prefix}_${i}`;
-          img.loading = "lazy";
-          gallery.appendChild(img);
-        }
-      }
-
-      function updateCaption(degree) {
-        caption.innerHTML =
-          `Task: “${config.taskText}”. ` +
-          `Target object (<i>${config.objectName}</i>) rotated by <b>${degree}°</b>.`;
+      function updateCaption() {
+        caption.innerHTML = `Case ${config.caseIndex}: Task: “${config.taskText}”.`;
       }
 
       function switchSet(prefix, degree) {
-        renderImages(prefix);
-        updateCaption(degree);
+        renderImageSeries(config.galleryId, prefix);
+        updateCaption();
 
         btn45.classList.remove("active");
         btn90.classList.remove("active");
@@ -362,25 +450,11 @@
     }
 
     function setupCaseGallery(config) {
-      const gallery = document.getElementById(config.galleryId);
       const caption = document.getElementById(config.captionId);
       const buttons = config.buttons.map(id => document.getElementById(id));
 
-      function renderImages(prefix) {
-        gallery.innerHTML = "";
-        for (let i = 0; i <= 36; i++) {
-          const img = document.createElement("img");
-          img.src = `assets/${prefix}_${i}.jpg`;
-          img.alt = `scene lighting perturbation ${prefix}_${i}`;
-          img.loading = "lazy";
-          gallery.appendChild(img);
-        }
-      }
-
-      function updateCaption(caseConfig) {
-        caption.innerHTML =
-          `Case ${caseConfig.caseIndex}: Task: “${caseConfig.taskText}”. ` +
-          `Scene lighting perturbation applied to the environment for target object <i>${caseConfig.objectName}</i>.`;
+      function updateCaption(caseItem) {
+        caption.innerHTML = `Case ${caseItem.caseIndex}: Task: “${caseItem.taskText}”.`;
       }
 
       function activateButton(activeIndex) {
@@ -390,9 +464,9 @@
       }
 
       function switchCase(index) {
-        const caseConfig = config.cases[index];
-        renderImages(caseConfig.prefix);
-        updateCaption(caseConfig);
+        const caseItem = config.cases[index];
+        renderImageSeries(config.galleryId, caseItem.prefix);
+        updateCaption(caseItem);
         activateButton(index);
       }
 
@@ -403,62 +477,92 @@
       switchCase(0);
     }
 
-    setupGallery({
+    setupRotationGallery({
       galleryId: "gallery-bbq",
       captionId: "caption-bbq",
       btn45Id: "btn-bbq-45",
       btn90Id: "btn-bbq-90",
-      prefix45: 0,
-      prefix90: 1,
-      objectName: "bbq sauce",
+      prefix45: "rot_0",
+      prefix90: "rot_1",
+      caseIndex: 1,
       taskText: "pick up the bbq sauce and place it in the basket"
     });
 
-    setupGallery({
+    setupRotationGallery({
       galleryId: "gallery-pudding",
       captionId: "caption-pudding",
       btn45Id: "btn-pudding-45",
       btn90Id: "btn-pudding-90",
-      prefix45: 2,
-      prefix90: 3,
-      objectName: "chocolate pudding",
+      prefix45: "rot_2",
+      prefix90: "rot_3",
+      caseIndex: 2,
       taskText: "pick up the chocolate pudding and place it in the basket"
     });
 
-    setupGallery({
+    setupRotationGallery({
       galleryId: "gallery-milk",
       captionId: "caption-milk",
       btn45Id: "btn-milk-45",
       btn90Id: "btn-milk-90",
-      prefix45: 4,
-      prefix90: 5,
-      objectName: "milk",
+      prefix45: "rot_4",
+      prefix90: "rot_5",
+      caseIndex: 3,
       taskText: "pick up the milk and place it in the basket"
     });
 
     setupCaseGallery({
       galleryId: "gallery-lighting",
       captionId: "caption-lighting",
-      buttons: ["btn-light-case1", "btn-light-case2", "btn-light-case3"],
+      buttons: [
+        "btn-light-case1",
+        "btn-light-case2",
+        "btn-light-case3"
+      ],
       cases: [
         {
           caseIndex: 1,
-          prefix: 6,
-          objectName: "bbq sauce",
+          prefix: "rot_6",
           taskText: "pick up the bbq sauce and place it in the basket"
         },
         {
           caseIndex: 2,
-          prefix: 7,
-          objectName: "chocolate pudding",
+          prefix: "rot_7",
           taskText: "pick up the chocolate pudding and place it in the basket"
         },
         {
           caseIndex: 3,
-          prefix: 8,
-          objectName: "milk",
+          prefix: "rot_8",
           taskText: "pick up the milk and place it in the basket"
         }
+      ]
+    });
+
+    setupCaseGallery({
+      galleryId: "gallery-real",
+      captionId: "caption-real",
+      buttons: [
+        "btn-real-case1",
+        "btn-real-case2",
+        "btn-real-case3",
+        "btn-real-case4",
+        "btn-real-case5",
+        "btn-real-case6",
+        "btn-real-case7",
+        "btn-real-case8",
+        "btn-real-case9",
+        "btn-real-case10"
+      ],
+      cases: [
+        { caseIndex: 1,  prefix: "real_0", taskText: "Instruction 1" },
+        { caseIndex: 2,  prefix: "real_1", taskText: "Instruction 2" },
+        { caseIndex: 3,  prefix: "real_2", taskText: "Instruction 3" },
+        { caseIndex: 4,  prefix: "real_3", taskText: "Instruction 4" },
+        { caseIndex: 5,  prefix: "real_4", taskText: "Instruction 5" },
+        { caseIndex: 6,  prefix: "real_5", taskText: "Instruction 6" },
+        { caseIndex: 7,  prefix: "real_6", taskText: "Instruction 7" },
+        { caseIndex: 8,  prefix: "real_7", taskText: "Instruction 8" },
+        { caseIndex: 9,  prefix: "real_8", taskText: "Instruction 9" },
+        { caseIndex: 10, prefix: "real_9", taskText: "Instruction 10" }
       ]
     });
   </script>
