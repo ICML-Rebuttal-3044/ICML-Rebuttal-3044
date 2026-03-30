@@ -78,7 +78,7 @@
       box-shadow: var(--shadow);
       padding: 28px;
       margin-bottom: 26px;
-      scroll-margin-top: 24px;
+      scroll-margin-top: 26px;
     }
 
     .section h2 {
@@ -104,41 +104,22 @@
       font-weight: 700;
     }
 
-    .toolbar {
+    .control-stack {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 10px;
       margin-bottom: 16px;
-    }
-
-    .toolbar-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      color: var(--accent);
-      font-weight: 700;
-      background: #f3f7fb;
-      border: 1px solid #d7e3f0;
-      border-radius: 999px;
-      padding: 8px 14px;
     }
 
     .toggle-group {
       display: inline-flex;
       flex-wrap: wrap;
-      background: #f1f5f9;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 4px;
-      gap: 4px;
+      gap: 8px;
     }
 
     .toggle-btn {
-      border: none;
-      background: transparent;
+      border: 1px solid #d7e3f0;
+      background: #f7fafc;
       color: #374151;
       font-size: 14px;
       font-weight: 600;
@@ -149,12 +130,14 @@
     }
 
     .toggle-btn:hover {
-      background: #e8eef6;
+      background: #eef4fb;
+      border-color: #c7d7e8;
     }
 
     .toggle-btn.active {
       background: var(--accent);
       color: white;
+      border-color: var(--accent);
       box-shadow: 0 2px 10px rgba(31, 78, 121, 0.18);
     }
 
@@ -221,33 +204,40 @@
     }
 
     .floating-nav.left {
-      left: 14px;
+      left: 16px;
     }
 
     .floating-nav.right {
-      right: 14px;
+      right: 16px;
     }
 
     .floating-nav a {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.96);
       color: var(--accent);
-      border: 1px solid #d7e3f0;
-      border-radius: 12px;
-      padding: 12px 8px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(215, 227, 240, 0.9);
+      border-radius: 999px;
+      padding: 9px 14px;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      transition: all 0.2s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      opacity: 0.38;
+      transition: all 0.22s ease;
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
     }
 
     .floating-nav a:hover {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
+
+    .floating-nav a.active {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #c9d9ea;
+      color: var(--accent);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
     @media (max-width: 1400px) {
@@ -279,11 +269,6 @@
         gap: 10px;
       }
 
-      .toolbar-label {
-        font-size: 15px;
-        padding: 7px 12px;
-      }
-
       .toggle-btn {
         padding: 7px 12px;
         font-size: 13px;
@@ -293,13 +278,13 @@
 </head>
 <body>
   <div class="floating-nav left">
-    <a href="#ood-section">OOD Observation Generation</a>
-    <a href="#real-world-section">Real-World Experiments</a>
+    <a href="#ood-section" data-target="ood-section">OOD Observation Generation</a>
+    <a href="#real-world-section" data-target="real-world-section">Real-World Experiments</a>
   </div>
 
   <div class="floating-nav right">
-    <a href="#ood-section">OOD Observation Generation</a>
-    <a href="#real-world-section">Real-World Experiments</a>
+    <a href="#ood-section" data-target="ood-section">OOD Observation Generation</a>
+    <a href="#real-world-section" data-target="real-world-section">Real-World Experiments</a>
   </div>
 
   <div class="page">
@@ -313,67 +298,42 @@
       <h2>Out-of-Distribution Observation Generation</h2>
 
       <div class="subblock">
-        <h3>Target-Object Rotation Setting: Case 1: BBQ Sauce</h3>
-        <div class="toolbar">
-          <div class="toolbar-label">Rotation Angle</div>
-          <div class="toggle-group" aria-label="Rotation switch for bbq sauce">
-            <button class="toggle-btn active" id="btn-bbq-45">45°</button>
-            <button class="toggle-btn" id="btn-bbq-90">90°</button>
+        <h3>Target-Object Rotation Setting</h3>
+        <div class="control-stack">
+          <div class="toggle-group" id="rotation-case-buttons">
+            <button class="toggle-btn active" id="btn-rot-case1">Case 1: BBQ Sauce</button>
+            <button class="toggle-btn" id="btn-rot-case2">Case 2: Chocolate Pudding</button>
+            <button class="toggle-btn" id="btn-rot-case3">Case 3: Milk</button>
+          </div>
+          <div class="toggle-group" id="rotation-angle-buttons">
+            <button class="toggle-btn active" id="btn-rot-45">45°</button>
+            <button class="toggle-btn" id="btn-rot-90">90°</button>
           </div>
         </div>
-        <div class="caption-box">
-          <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-bbq"></p>
-        </div>
-        <div class="gallery" id="gallery-bbq"></div>
-      </div>
 
-      <div class="subblock">
-        <h3>Target-Object Rotation Setting: Case 2: Chocolate Pudding</h3>
-        <div class="toolbar">
-          <div class="toolbar-label">Rotation Angle</div>
-          <div class="toggle-group" aria-label="Rotation switch for chocolate pudding">
-            <button class="toggle-btn active" id="btn-pudding-45">45°</button>
-            <button class="toggle-btn" id="btn-pudding-90">90°</button>
-          </div>
-        </div>
         <div class="caption-box">
           <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-pudding"></p>
+          <p class="caption-text" id="caption-rotation"></p>
         </div>
-        <div class="gallery" id="gallery-pudding"></div>
-      </div>
 
-      <div class="subblock">
-        <h3>Target-Object Rotation Setting: Case 3: Milk</h3>
-        <div class="toolbar">
-          <div class="toolbar-label">Rotation Angle</div>
-          <div class="toggle-group" aria-label="Rotation switch for milk">
-            <button class="toggle-btn active" id="btn-milk-45">45°</button>
-            <button class="toggle-btn" id="btn-milk-90">90°</button>
-          </div>
-        </div>
-        <div class="caption-box">
-          <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-milk"></p>
-        </div>
-        <div class="gallery" id="gallery-milk"></div>
+        <div class="gallery" id="gallery-rotation"></div>
       </div>
 
       <div class="subblock">
         <h3>Scene Lighting Perturbation Setting: Shadowed Lighting</h3>
-        <div class="toolbar">
-          <div class="toolbar-label">Case Selection</div>
-          <div class="toggle-group" aria-label="Case switch for shadowed lighting">
-            <button class="toggle-btn active" id="btn-light-case1">Case 1</button>
-            <button class="toggle-btn" id="btn-light-case2">Case 2</button>
-            <button class="toggle-btn" id="btn-light-case3">Case 3</button>
+        <div class="control-stack">
+          <div class="toggle-group" id="lighting-case-buttons">
+            <button class="toggle-btn active" id="btn-light-case1">Case 1: BBQ Sauce</button>
+            <button class="toggle-btn" id="btn-light-case2">Case 2: Chocolate Pudding</button>
+            <button class="toggle-btn" id="btn-light-case3">Case 3: Milk</button>
           </div>
         </div>
+
         <div class="caption-box">
           <div class="caption-tag">Current setting</div>
           <p class="caption-text" id="caption-lighting"></p>
         </div>
+
         <div class="gallery" id="gallery-lighting"></div>
       </div>
     </div>
@@ -382,10 +342,9 @@
       <h2>Real-World Experiments</h2>
 
       <div class="subblock">
-        <h3>Qualitative Cases</h3>
-        <div class="toolbar">
-          <div class="toolbar-label">Case Selection</div>
-          <div class="toggle-group" aria-label="Case switch for real-world experiments">
+        <h3>Observation Generation</h3>
+        <div class="control-stack">
+          <div class="toggle-group" id="real-case-buttons">
             <button class="toggle-btn active" id="btn-real-case1">Case 1</button>
             <button class="toggle-btn" id="btn-real-case2">Case 2</button>
             <button class="toggle-btn" id="btn-real-case3">Case 3</button>
@@ -398,10 +357,12 @@
             <button class="toggle-btn" id="btn-real-case10">Case 10</button>
           </div>
         </div>
+
         <div class="caption-box">
           <div class="caption-tag">Current setting</div>
           <p class="caption-text" id="caption-real"></p>
         </div>
+
         <div class="gallery" id="gallery-real"></div>
       </div>
     </div>
@@ -420,151 +381,216 @@
       }
     }
 
-    function setupRotationGallery(config) {
-      const caption = document.getElementById(config.captionId);
-      const btn45 = document.getElementById(config.btn45Id);
-      const btn90 = document.getElementById(config.btn90Id);
+    function setupRotationGallery() {
+      const caption = document.getElementById("caption-rotation");
 
-      function updateCaption() {
-        caption.innerHTML = `Case ${config.caseIndex}: Task: “${config.taskText}”.`;
-      }
+      const caseButtons = [
+        document.getElementById("btn-rot-case1"),
+        document.getElementById("btn-rot-case2"),
+        document.getElementById("btn-rot-case3")
+      ];
+      const angleButtons = [
+        document.getElementById("btn-rot-45"),
+        document.getElementById("btn-rot-90")
+      ];
 
-      function switchSet(prefix, degree) {
-        renderImageSeries(config.galleryId, prefix);
-        updateCaption();
-
-        btn45.classList.remove("active");
-        btn90.classList.remove("active");
-
-        if (degree === 45) {
-          btn45.classList.add("active");
-        } else {
-          btn90.classList.add("active");
-        }
-      }
-
-      btn45.addEventListener("click", () => switchSet(config.prefix45, 45));
-      btn90.addEventListener("click", () => switchSet(config.prefix90, 90));
-
-      switchSet(config.prefix45, 45);
-    }
-
-    function setupCaseGallery(config) {
-      const caption = document.getElementById(config.captionId);
-      const buttons = config.buttons.map(id => document.getElementById(id));
-
-      function updateCaption(caseItem) {
-        caption.innerHTML = `Case ${caseItem.caseIndex}: Task: “${caseItem.taskText}”.`;
-      }
-
-      function activateButton(activeIndex) {
-        buttons.forEach((btn, idx) => {
-          btn.classList.toggle("active", idx === activeIndex);
-        });
-      }
-
-      function switchCase(index) {
-        const caseItem = config.cases[index];
-        renderImageSeries(config.galleryId, caseItem.prefix);
-        updateCaption(caseItem);
-        activateButton(index);
-      }
-
-      buttons.forEach((btn, idx) => {
-        btn.addEventListener("click", () => switchCase(idx));
-      });
-
-      switchCase(0);
-    }
-
-    setupRotationGallery({
-      galleryId: "gallery-bbq",
-      captionId: "caption-bbq",
-      btn45Id: "btn-bbq-45",
-      btn90Id: "btn-bbq-90",
-      prefix45: "rot_0",
-      prefix90: "rot_1",
-      caseIndex: 1,
-      taskText: "pick up the bbq sauce and place it in the basket"
-    });
-
-    setupRotationGallery({
-      galleryId: "gallery-pudding",
-      captionId: "caption-pudding",
-      btn45Id: "btn-pudding-45",
-      btn90Id: "btn-pudding-90",
-      prefix45: "rot_2",
-      prefix90: "rot_3",
-      caseIndex: 2,
-      taskText: "pick up the chocolate pudding and place it in the basket"
-    });
-
-    setupRotationGallery({
-      galleryId: "gallery-milk",
-      captionId: "caption-milk",
-      btn45Id: "btn-milk-45",
-      btn90Id: "btn-milk-90",
-      prefix45: "rot_4",
-      prefix90: "rot_5",
-      caseIndex: 3,
-      taskText: "pick up the milk and place it in the basket"
-    });
-
-    setupCaseGallery({
-      galleryId: "gallery-lighting",
-      captionId: "caption-lighting",
-      buttons: [
-        "btn-light-case1",
-        "btn-light-case2",
-        "btn-light-case3"
-      ],
-      cases: [
+      const cases = [
         {
           caseIndex: 1,
-          prefix: "rot_6",
-          taskText: "pick up the bbq sauce and place it in the basket"
+          objectName: "bbq sauce",
+          taskText: "pick up the bbq sauce and place it in the basket",
+          prefix45: "rot_0",
+          prefix90: "rot_1"
         },
         {
           caseIndex: 2,
-          prefix: "rot_7",
-          taskText: "pick up the chocolate pudding and place it in the basket"
+          objectName: "chocolate pudding",
+          taskText: "pick up the chocolate pudding and place it in the basket",
+          prefix45: "rot_2",
+          prefix90: "rot_3"
         },
         {
           caseIndex: 3,
-          prefix: "rot_8",
-          taskText: "pick up the milk and place it in the basket"
+          objectName: "milk",
+          taskText: "pick up the milk and place it in the basket",
+          prefix45: "rot_4",
+          prefix90: "rot_5"
         }
-      ]
-    });
+      ];
 
-    setupCaseGallery({
-      galleryId: "gallery-real",
-      captionId: "caption-real",
-      buttons: [
-        "btn-real-case1",
-        "btn-real-case2",
-        "btn-real-case3",
-        "btn-real-case4",
-        "btn-real-case5",
-        "btn-real-case6",
-        "btn-real-case7",
-        "btn-real-case8",
-        "btn-real-case9",
-        "btn-real-case10"
-      ],
-      cases: [
-        { caseIndex: 1,  prefix: "real_0", taskText: "Instruction 1" },
-        { caseIndex: 2,  prefix: "real_1", taskText: "Instruction 2" },
-        { caseIndex: 3,  prefix: "real_2", taskText: "Instruction 3" },
-        { caseIndex: 4,  prefix: "real_3", taskText: "Instruction 4" },
-        { caseIndex: 5,  prefix: "real_4", taskText: "Instruction 5" },
-        { caseIndex: 6,  prefix: "real_5", taskText: "Instruction 6" },
-        { caseIndex: 7,  prefix: "real_6", taskText: "Instruction 7" },
-        { caseIndex: 8,  prefix: "real_7", taskText: "Instruction 8" },
-        { caseIndex: 9,  prefix: "real_8", taskText: "Instruction 9" },
+      let currentCase = 0;
+      let currentAngle = 45;
+
+      function updateButtons() {
+        caseButtons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
+        angleButtons.forEach((btn, idx) => btn.classList.toggle("active", (idx === 0 && currentAngle === 45) || (idx === 1 && currentAngle === 90)));
+      }
+
+      function updateCaption() {
+        const item = cases[currentCase];
+        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”. (目标对象: ${item.objectName})`;
+      }
+
+      function render() {
+        const item = cases[currentCase];
+        const prefix = currentAngle === 45 ? item.prefix45 : item.prefix90;
+        renderImageSeries("gallery-rotation", prefix);
+        updateButtons();
+        updateCaption();
+      }
+
+      caseButtons.forEach((btn, idx) => {
+        btn.addEventListener("click", () => {
+          currentCase = idx;
+          render();
+        });
+      });
+
+      document.getElementById("btn-rot-45").addEventListener("click", () => {
+        currentAngle = 45;
+        render();
+      });
+
+      document.getElementById("btn-rot-90").addEventListener("click", () => {
+        currentAngle = 90;
+        render();
+      });
+
+      render();
+    }
+
+    function setupLightingGallery() {
+      const caption = document.getElementById("caption-lighting");
+      const buttons = [
+        document.getElementById("btn-light-case1"),
+        document.getElementById("btn-light-case2"),
+        document.getElementById("btn-light-case3")
+      ];
+
+      const cases = [
+        {
+          caseIndex: 1,
+          objectName: "bbq sauce",
+          taskText: "pick up the bbq sauce and place it in the basket",
+          prefix: "light_0"
+        },
+        {
+          caseIndex: 2,
+          objectName: "chocolate pudding",
+          taskText: "pick up the chocolate pudding and place it in the basket",
+          prefix: "light_1"
+        },
+        {
+          caseIndex: 3,
+          objectName: "milk",
+          taskText: "pick up the milk and place it in the basket",
+          prefix: "light_2"
+        }
+      ];
+
+      let currentCase = 0;
+
+      function render() {
+        const item = cases[currentCase];
+        renderImageSeries("gallery-lighting", item.prefix);
+        buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
+        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”. (目标对象: ${item.objectName})`;
+      }
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener("click", () => {
+          currentCase = idx;
+          render();
+        });
+      });
+
+      render();
+    }
+
+    function setupRealGallery() {
+      const caption = document.getElementById("caption-real");
+      const buttons = [
+        document.getElementById("btn-real-case1"),
+        document.getElementById("btn-real-case2"),
+        document.getElementById("btn-real-case3"),
+        document.getElementById("btn-real-case4"),
+        document.getElementById("btn-real-case5"),
+        document.getElementById("btn-real-case6"),
+        document.getElementById("btn-real-case7"),
+        document.getElementById("btn-real-case8"),
+        document.getElementById("btn-real-case9"),
+        document.getElementById("btn-real-case10")
+      ];
+
+      const cases = [
+        { caseIndex: 1, prefix: "real_0", taskText: "Instruction 1" },
+        { caseIndex: 2, prefix: "real_1", taskText: "Instruction 2" },
+        { caseIndex: 3, prefix: "real_2", taskText: "Instruction 3" },
+        { caseIndex: 4, prefix: "real_3", taskText: "Instruction 4" },
+        { caseIndex: 5, prefix: "real_4", taskText: "Instruction 5" },
+        { caseIndex: 6, prefix: "real_5", taskText: "Instruction 6" },
+        { caseIndex: 7, prefix: "real_6", taskText: "Instruction 7" },
+        { caseIndex: 8, prefix: "real_7", taskText: "Instruction 8" },
+        { caseIndex: 9, prefix: "real_8", taskText: "Instruction 9" },
         { caseIndex: 10, prefix: "real_9", taskText: "Instruction 10" }
-      ]
-    });
+      ];
+
+      let currentCase = 0;
+
+      function render() {
+        const item = cases[currentCase];
+        renderImageSeries("gallery-real", item.prefix);
+        buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
+        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”.`;
+      }
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener("click", () => {
+          currentCase = idx;
+          render();
+        });
+      });
+
+      render();
+    }
+
+    function setupFloatingNav() {
+      const sections = [
+        { id: "ood-section" },
+        { id: "real-world-section" }
+      ];
+      const navLinks = document.querySelectorAll(".floating-nav a");
+
+      function setActive(sectionId) {
+        navLinks.forEach(link => {
+          link.classList.toggle("active", link.dataset.target === sectionId);
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      }, {
+        threshold: [0.2, 0.35, 0.5, 0.7]
+      });
+
+      sections.forEach(section => {
+        const el = document.getElementById(section.id);
+        if (el) observer.observe(el);
+      });
+
+      setActive("ood-section");
+    }
+
+    setupRotationGallery();
+    setupLightingGallery();
+    setupRealGallery();
+    setupFloatingNav();
   </script>
 </body>
 </html>
