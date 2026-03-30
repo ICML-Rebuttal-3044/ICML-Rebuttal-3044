@@ -9,10 +9,11 @@
       --bg: #f7f8fa;
       --card: #ffffff;
       --text: #1a1a1a;
-      --subtext: #666;
-      --border: #e3e6eb;
+      --subtext: #5f6b7a;
+      --border: #e2e8f0;
       --accent: #1f4e79;
-      --shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      --accent-light: #eef4fb;
+      --shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
       --radius: 14px;
     }
 
@@ -29,13 +30,9 @@
       line-height: 1.6;
     }
 
-    body {
-      width: 100%;
-    }
-
     .page {
-      width: min(96vw, 1800px);
-      margin: 28px auto 40px auto;
+      width: min(98vw, 2000px);
+      margin: 24px auto 40px auto;
       padding: 0 12px;
     }
 
@@ -44,29 +41,29 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 40px 36px 30px 36px;
+      padding: 42px 36px 30px 36px;
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(28px, 3vw, 42px);
+      font-size: clamp(28px, 2.8vw, 42px);
       font-weight: 700;
-      color: #111;
       line-height: 1.25;
+      color: #111;
     }
 
     .subtitle {
       margin-top: 12px;
       font-size: 18px;
-      color: #333;
+      color: #2b2b2b;
       font-weight: 500;
     }
 
     .subsubtitle {
       margin-top: 4px;
-      font-size: 16px;
+      font-size: 15px;
       color: var(--subtext);
     }
 
@@ -75,23 +72,98 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 28px 28px 24px 28px;
+      padding: 28px;
       margin-bottom: 24px;
     }
 
     .section h2 {
       margin: 0 0 18px 0;
-      font-size: 26px;
+      font-size: 27px;
       color: var(--accent);
       border-bottom: 1px solid var(--border);
       padding-bottom: 10px;
     }
 
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .toolbar-label {
+      font-size: 15px;
+      color: var(--subtext);
+      font-weight: 600;
+    }
+
+    .toggle-group {
+      display: inline-flex;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #e8eef6;
+    }
+
+    .toggle-btn.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 2px 10px rgba(31, 78, 121, 0.18);
+    }
+
+    .caption-box {
+      margin-bottom: 18px;
+      background: var(--accent-light);
+      border: 1px solid #d9e6f5;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .caption-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: white;
+      border: 1px solid #d6e2f0;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 8px;
+    }
+
+    .caption-text {
+      margin: 0;
+      font-size: 15.5px;
+      color: #243447;
+      font-weight: 500;
+    }
+
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
       gap: 14px;
-      margin-top: 8px;
     }
 
     .gallery img {
@@ -102,7 +174,7 @@
       border: 1px solid var(--border);
       background: #fafafa;
       display: block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .gallery img:hover {
@@ -110,31 +182,22 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
-    .caption {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--border);
-      font-size: 15px;
-      color: #444;
-      text-align: center;
-    }
-
     @media (max-width: 900px) {
       .page {
-        width: 98vw;
+        width: 99vw;
         padding: 0 8px;
       }
 
       .hero {
-        padding: 28px 18px 24px 18px;
+        padding: 30px 18px 24px 18px;
       }
 
       .section {
-        padding: 20px 16px 18px 16px;
+        padding: 20px 16px;
       }
 
       .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
         gap: 10px;
       }
     }
@@ -151,24 +214,60 @@
     <div class="section">
       <h2>Out-of-Distribution Observation Generation</h2>
 
-      <div class="gallery" id="gallery"></div>
-
-      <div class="caption">
-        Target object (<i>bbq sauce</i>) rotated by 45° in the task
-        “pick up the bbq sauce and place it in the basket”.
+      <div class="toolbar">
+        <div class="toolbar-label">Target-object rotation setting</div>
+        <div class="toggle-group" aria-label="Rotation switch">
+          <button class="toggle-btn active" id="btn45" onclick="switchSet(0, 45)">45°</button>
+          <button class="toggle-btn" id="btn90" onclick="switchSet(1, 90)">90°</button>
+        </div>
       </div>
+
+      <div class="caption-box">
+        <div class="caption-tag">Current setting</div>
+        <p class="caption-text" id="captionText">
+          Task: “pick up the bbq sauce and place it in the basket”. Target object (<i>bbq sauce</i>) rotated by <b>45°</b>.
+        </p>
+      </div>
+
+      <div class="gallery" id="gallery"></div>
     </div>
   </div>
 
   <script>
     const gallery = document.getElementById("gallery");
-    for (let i = 0; i <= 36; i++) {
-      const img = document.createElement("img");
-      img.src = `assets/0_${i}.jpg`;
-      img.alt = `OOD observation generation ${i}`;
-      img.loading = "lazy";
-      gallery.appendChild(img);
+    const captionText = document.getElementById("captionText");
+    const btn45 = document.getElementById("btn45");
+    const btn90 = document.getElementById("btn90");
+
+    function renderImages(prefix) {
+      gallery.innerHTML = "";
+      for (let i = 0; i <= 36; i++) {
+        const img = document.createElement("img");
+        img.src = `assets/${prefix}_${i}.jpg`;
+        img.alt = `OOD observation generation ${prefix}_${i}`;
+        img.loading = "lazy";
+        gallery.appendChild(img);
+      }
     }
+
+    function switchSet(prefix, degree) {
+      renderImages(prefix);
+
+      captionText.innerHTML =
+        `Task: “pick up the bbq sauce and place it in the basket”. ` +
+        `Target object (<i>bbq sauce</i>) rotated by <b>${degree}°</b>.`;
+
+      btn45.classList.remove("active");
+      btn90.classList.remove("active");
+
+      if (degree === 45) {
+        btn45.classList.add("active");
+      } else {
+        btn90.classList.add("active");
+      }
+    }
+
+    switchSet(0, 45);
   </script>
 </body>
 </html>
