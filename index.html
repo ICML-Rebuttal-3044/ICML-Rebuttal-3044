@@ -84,6 +84,13 @@
       padding-bottom: 10px;
     }
 
+    .section-subtitle {
+      margin: -4px 0 18px 0;
+      font-size: 16px;
+      color: var(--subtext);
+      font-weight: 600;
+    }
+
     .toolbar {
       display: flex;
       align-items: center;
@@ -94,9 +101,17 @@
     }
 
     .toolbar-label {
-      font-size: 15px;
-      color: var(--subtext);
-      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      background: #f3f7fb;
+      border: 1px solid #d7e3f0;
+      border-radius: 999px;
+      padding: 8px 14px;
     }
 
     .toggle-group {
@@ -182,6 +197,10 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
+    .divider-space {
+      height: 8px;
+    }
+
     @media (max-width: 900px) {
       .page {
         width: 99vw;
@@ -200,6 +219,11 @@
         grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
         gap: 10px;
       }
+
+      .toolbar-label {
+        font-size: 15px;
+        padding: 7px 12px;
+      }
     }
   </style>
 </head>
@@ -213,61 +237,230 @@
 
     <div class="section">
       <h2>Out-of-Distribution Observation Generation</h2>
+      <div class="section-subtitle">Case 1: BBQ Sauce</div>
 
       <div class="toolbar">
-        <div class="toolbar-label">Target-object rotation setting</div>
-        <div class="toggle-group" aria-label="Rotation switch">
-          <button class="toggle-btn active" id="btn45" onclick="switchSet(0, 45)">45°</button>
-          <button class="toggle-btn" id="btn90" onclick="switchSet(1, 90)">90°</button>
+        <div class="toolbar-label">Target-Object Rotation Setting</div>
+        <div class="toggle-group" aria-label="Rotation switch for bbq sauce">
+          <button class="toggle-btn active" id="btn-bbq-45">45°</button>
+          <button class="toggle-btn" id="btn-bbq-90">90°</button>
         </div>
       </div>
 
       <div class="caption-box">
         <div class="caption-tag">Current setting</div>
-        <p class="caption-text" id="captionText">
-          Task: “pick up the bbq sauce and place it in the basket”. Target object (<i>bbq sauce</i>) rotated by <b>45°</b>.
-        </p>
+        <p class="caption-text" id="caption-bbq"></p>
       </div>
 
-      <div class="gallery" id="gallery"></div>
+      <div class="gallery" id="gallery-bbq"></div>
+    </div>
+
+    <div class="section">
+      <h2>Out-of-Distribution Observation Generation</h2>
+      <div class="section-subtitle">Case 2: Chocolate Pudding</div>
+
+      <div class="toolbar">
+        <div class="toolbar-label">Target-Object Rotation Setting</div>
+        <div class="toggle-group" aria-label="Rotation switch for chocolate pudding">
+          <button class="toggle-btn active" id="btn-pudding-45">45°</button>
+          <button class="toggle-btn" id="btn-pudding-90">90°</button>
+        </div>
+      </div>
+
+      <div class="caption-box">
+        <div class="caption-tag">Current setting</div>
+        <p class="caption-text" id="caption-pudding"></p>
+      </div>
+
+      <div class="gallery" id="gallery-pudding"></div>
+    </div>
+
+    <div class="section">
+      <h2>Out-of-Distribution Observation Generation</h2>
+      <div class="section-subtitle">Case 3: Milk</div>
+
+      <div class="toolbar">
+        <div class="toolbar-label">Target-Object Rotation Setting</div>
+        <div class="toggle-group" aria-label="Rotation switch for milk">
+          <button class="toggle-btn active" id="btn-milk-45">45°</button>
+          <button class="toggle-btn" id="btn-milk-90">90°</button>
+        </div>
+      </div>
+
+      <div class="caption-box">
+        <div class="caption-tag">Current setting</div>
+        <p class="caption-text" id="caption-milk"></p>
+      </div>
+
+      <div class="gallery" id="gallery-milk"></div>
+    </div>
+
+    <div class="section">
+      <h2>Out-of-Distribution Observation Generation</h2>
+      <div class="section-subtitle">Scene Lighting Perturbation</div>
+
+      <div class="toolbar">
+        <div class="toolbar-label">Scene Lighting Perturbation Setting</div>
+        <div class="toggle-group" aria-label="Case switch for scene lighting perturbation">
+          <button class="toggle-btn active" id="btn-light-case1">Case 1</button>
+          <button class="toggle-btn" id="btn-light-case2">Case 2</button>
+          <button class="toggle-btn" id="btn-light-case3">Case 3</button>
+        </div>
+      </div>
+
+      <div class="caption-box">
+        <div class="caption-tag">Current setting</div>
+        <p class="caption-text" id="caption-lighting"></p>
+      </div>
+
+      <div class="gallery" id="gallery-lighting"></div>
     </div>
   </div>
 
   <script>
-    const gallery = document.getElementById("gallery");
-    const captionText = document.getElementById("captionText");
-    const btn45 = document.getElementById("btn45");
-    const btn90 = document.getElementById("btn90");
+    function setupGallery(config) {
+      const gallery = document.getElementById(config.galleryId);
+      const caption = document.getElementById(config.captionId);
+      const btn45 = document.getElementById(config.btn45Id);
+      const btn90 = document.getElementById(config.btn90Id);
 
-    function renderImages(prefix) {
-      gallery.innerHTML = "";
-      for (let i = 0; i <= 36; i++) {
-        const img = document.createElement("img");
-        img.src = `assets/${prefix}_${i}.jpg`;
-        img.alt = `OOD observation generation ${prefix}_${i}`;
-        img.loading = "lazy";
-        gallery.appendChild(img);
+      function renderImages(prefix) {
+        gallery.innerHTML = "";
+        for (let i = 0; i <= 36; i++) {
+          const img = document.createElement("img");
+          img.src = `assets/${prefix}_${i}.jpg`;
+          img.alt = `${config.objectName} OOD observation ${prefix}_${i}`;
+          img.loading = "lazy";
+          gallery.appendChild(img);
+        }
       }
+
+      function updateCaption(degree) {
+        caption.innerHTML =
+          `Task: “${config.taskText}”. ` +
+          `Target object (<i>${config.objectName}</i>) rotated by <b>${degree}°</b>.`;
+      }
+
+      function switchSet(prefix, degree) {
+        renderImages(prefix);
+        updateCaption(degree);
+
+        btn45.classList.remove("active");
+        btn90.classList.remove("active");
+
+        if (degree === 45) {
+          btn45.classList.add("active");
+        } else {
+          btn90.classList.add("active");
+        }
+      }
+
+      btn45.addEventListener("click", () => switchSet(config.prefix45, 45));
+      btn90.addEventListener("click", () => switchSet(config.prefix90, 90));
+
+      switchSet(config.prefix45, 45);
     }
 
-    function switchSet(prefix, degree) {
-      renderImages(prefix);
+    function setupCaseGallery(config) {
+      const gallery = document.getElementById(config.galleryId);
+      const caption = document.getElementById(config.captionId);
+      const buttons = config.buttons.map(id => document.getElementById(id));
 
-      captionText.innerHTML =
-        `Task: “pick up the bbq sauce and place it in the basket”. ` +
-        `Target object (<i>bbq sauce</i>) rotated by <b>${degree}°</b>.`;
-
-      btn45.classList.remove("active");
-      btn90.classList.remove("active");
-
-      if (degree === 45) {
-        btn45.classList.add("active");
-      } else {
-        btn90.classList.add("active");
+      function renderImages(prefix) {
+        gallery.innerHTML = "";
+        for (let i = 0; i <= 36; i++) {
+          const img = document.createElement("img");
+          img.src = `assets/${prefix}_${i}.jpg`;
+          img.alt = `scene lighting perturbation ${prefix}_${i}`;
+          img.loading = "lazy";
+          gallery.appendChild(img);
+        }
       }
+
+      function updateCaption(caseConfig) {
+        caption.innerHTML =
+          `Case ${caseConfig.caseIndex}: Task: “${caseConfig.taskText}”. ` +
+          `Scene lighting perturbation applied to the environment for target object <i>${caseConfig.objectName}</i>.`;
+      }
+
+      function activateButton(activeIndex) {
+        buttons.forEach((btn, idx) => {
+          btn.classList.toggle("active", idx === activeIndex);
+        });
+      }
+
+      function switchCase(index) {
+        const caseConfig = config.cases[index];
+        renderImages(caseConfig.prefix);
+        updateCaption(caseConfig);
+        activateButton(index);
+      }
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener("click", () => switchCase(idx));
+      });
+
+      switchCase(0);
     }
 
-    switchSet(0, 45);
+    setupGallery({
+      galleryId: "gallery-bbq",
+      captionId: "caption-bbq",
+      btn45Id: "btn-bbq-45",
+      btn90Id: "btn-bbq-90",
+      prefix45: 0,
+      prefix90: 1,
+      objectName: "bbq sauce",
+      taskText: "pick up the bbq sauce and place it in the basket"
+    });
+
+    setupGallery({
+      galleryId: "gallery-pudding",
+      captionId: "caption-pudding",
+      btn45Id: "btn-pudding-45",
+      btn90Id: "btn-pudding-90",
+      prefix45: 2,
+      prefix90: 3,
+      objectName: "chocolate pudding",
+      taskText: "pick up the chocolate pudding and place it in the basket"
+    });
+
+    setupGallery({
+      galleryId: "gallery-milk",
+      captionId: "caption-milk",
+      btn45Id: "btn-milk-45",
+      btn90Id: "btn-milk-90",
+      prefix45: 4,
+      prefix90: 5,
+      objectName: "milk",
+      taskText: "pick up the milk and place it in the basket"
+    });
+
+    setupCaseGallery({
+      galleryId: "gallery-lighting",
+      captionId: "caption-lighting",
+      buttons: ["btn-light-case1", "btn-light-case2", "btn-light-case3"],
+      cases: [
+        {
+          caseIndex: 1,
+          prefix: 6,
+          objectName: "bbq sauce",
+          taskText: "pick up the bbq sauce and place it in the basket"
+        },
+        {
+          caseIndex: 2,
+          prefix: 7,
+          objectName: "chocolate pudding",
+          taskText: "pick up the chocolate pudding and place it in the basket"
+        },
+        {
+          caseIndex: 3,
+          prefix: 8,
+          objectName: "milk",
+          taskText: "pick up the milk and place it in the basket"
+        }
+      ]
+    });
   </script>
 </body>
 </html>
