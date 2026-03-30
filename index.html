@@ -3,165 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anonymous Supplementary Materials for ICML 2026</title>
+  <title>ViMoGen Rebuttal Link</title>
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 20px;
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --subtext: #666;
+      --border: #e3e6eb;
+      --accent: #1f4e79;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       line-height: 1.6;
-      color: #222;
     }
-    h1, h2, h3 {
-      color: #111;
-    }
-    .note {
-      background: #f5f5f5;
-      border-left: 4px solid #888;
-      padding: 12px 16px;
-      margin: 20px 0;
-    }
-    .section {
-      margin-top: 40px;
-    }
-    table {
-      border-collapse: collapse;
+
+    body {
       width: 100%;
-      margin-top: 12px;
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px 12px;
+
+    .page {
+      width: min(96vw, 1800px);
+      margin: 28px auto 40px auto;
+      padding: 0 12px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 36px 30px 36px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      color: #111;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      font-size: 18px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .subsubtitle {
+      margin-top: 4px;
+      font-size: 16px;
+      color: var(--subtext);
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 28px 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 18px 0;
+      font-size: 26px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.015);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .caption {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      font-size: 15px;
+      color: #444;
       text-align: center;
     }
-    th {
-      background: #f0f0f0;
-    }
-    a {
-      color: #0b57d0;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 16px;
-    }
-    .small {
-      color: #666;
-      font-size: 14px;
-    }
-    video {
-      width: 100%;
-      max-width: 720px;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    ul {
-      padding-left: 20px;
+
+    @media (max-width: 900px) {
+      .page {
+        width: 98vw;
+        padding: 0 8px;
+      }
+
+      .hero {
+        padding: 28px 18px 24px 18px;
+      }
+
+      .section {
+        padding: 20px 16px 18px 16px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <div class="hero">
+      <h1>ViMoGen: Enhancing VLA Post-Training via Kinematics-Aware Video Synthesis</h1>
+      <div class="subtitle">ICML 2025 Submission 3044 Rebuttal Link</div>
+      <div class="subsubtitle">Anonymous Author</div>
+    </div>
 
-  <h1>Anonymous Supplementary Materials for ICML 2026</h1>
+    <div class="section">
+      <h2>Out-of-Distribution Observation Generation</h2>
 
-  <div class="note">
-    This anonymous webpage is provided for supplementary rebuttal materials only.
-  </div>
+      <div class="gallery" id="gallery"></div>
 
-  <div class="section">
-    <h2>Overview</h2>
-    <p>
-      This page provides supplementary qualitative results, tables, and public links
-      referenced in the rebuttal. All materials are anonymized for review purposes.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Main Results Summary</h2>
-    <table>
-      <tr>
-        <th>Method</th>
-        <th>Benchmark A</th>
-        <th>Benchmark B</th>
-        <th>Real-World</th>
-      </tr>
-      <tr>
-        <td>Baseline 1</td>
-        <td>72.1</td>
-        <td>68.4</td>
-        <td>55.0</td>
-      </tr>
-      <tr>
-        <td>Baseline 2</td>
-        <td>74.3</td>
-        <td>69.8</td>
-        <td>57.5</td>
-      </tr>
-      <tr>
-        <td>Ours</td>
-        <td><b>79.6</b></td>
-        <td><b>73.9</b></td>
-        <td><b>64.2</b></td>
-      </tr>
-    </table>
-    <p class="small">Replace the values above with your actual rebuttal numbers.</p>
-  </div>
-
-  <div class="section">
-    <h2>Supplementary Figures</h2>
-    <div class="card">
-      <h3>Qualitative Comparison</h3>
-      <p>Example visualization for task-level comparison.</p>
-      <img src="assets/teaser.png" alt="Qualitative comparison figure">
+      <div class="caption">
+        Target object (<i>bbq sauce</i>) rotated by 45° in the task
+        “pick up the bbq sauce and place it in the basket”.
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Videos</h2>
-    <div class="card">
-      <h3>Task 1: Long-Horizon Manipulation</h3>
-      <p>Demonstration video for the proposed method.</p>
-      <video controls>
-        <source src="assets/result1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    <div class="card">
-      <h3>Task 2: Real-World Execution</h3>
-      <p>Supplementary real-world evaluation video.</p>
-      <video controls>
-        <source src="assets/result2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>External Links</h2>
-    <ul>
-      <li><a href="https://example.com" target="_blank">Anonymous additional material link</a></li>
-      <li><a href="assets/qualitative.pdf" target="_blank">Supplementary PDF</a></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Notes</h2>
-    <p class="small">
-      Please ensure that all linked content is anonymized and publicly accessible without login.
-    </p>
-  </div>
-
+  <script>
+    const gallery = document.getElementById("gallery");
+    for (let i = 0; i <= 36; i++) {
+      const img = document.createElement("img");
+      img.src = `assets/0_${i}.jpg`;
+      img.alt = `OOD observation generation ${i}`;
+      img.loading = "lazy";
+      gallery.appendChild(img);
+    }
+  </script>
 </body>
 </html>
