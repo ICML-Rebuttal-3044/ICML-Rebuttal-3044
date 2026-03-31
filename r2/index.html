@@ -182,6 +182,33 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
+    /* MathJax: keep inline formulas natural without breaking layout */
+    mjx-container[jax="CHTML"] {
+      font-size: 1em !important;
+    }
+
+    mjx-container[jax="CHTML"]:not([display="true"]) {
+      display: inline-block;
+      margin: 0 0.05em;
+      vertical-align: -0.05em;
+      line-height: 0;
+    }
+
+    mjx-container[jax="CHTML"][display="true"] {
+      display: block;
+      margin: 0.9em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .caption-text mjx-container[jax="CHTML"],
+    .section h2 mjx-container[jax="CHTML"],
+    .caption-tag mjx-container[jax="CHTML"],
+    .subtitle mjx-container[jax="CHTML"],
+    .subsubtitle mjx-container[jax="CHTML"] {
+      max-width: 100%;
+    }
+
     @media (max-width: 1400px) {
       .floating-nav {
         display: none;
@@ -207,6 +234,24 @@
       }
     }
   </style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      chtml: {
+        scale: 1,
+        matchFontHeight: false
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
   <div class="page">
