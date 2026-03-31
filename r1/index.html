@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ViMoGen Rebuttal Link</title>
+  <title>ViMoGen Rebuttal Link - Reviewer 1</title>
   <style>
     :root {
       --bg: #f7f8fa;
@@ -17,8 +17,14 @@
       --radius: 14px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -128,8 +134,13 @@
       font-weight: 500;
     }
 
-    .caption-text p { margin: 0 0 10px 0; }
-    .caption-text p:last-child { margin-bottom: 0; }
+    .caption-text p {
+      margin: 0 0 10px 0;
+    }
+
+    .caption-text p:last-child {
+      margin-bottom: 0;
+    }
 
     .placeholder {
       padding: 18px 20px;
@@ -181,14 +192,28 @@
     }
 
     @media (max-width: 1400px) {
-      .floating-nav { display: none; }
+      .floating-nav {
+        display: none;
+      }
     }
 
     @media (max-width: 900px) {
-      .page { width: 99vw; padding: 0 8px; }
-      .hero { padding: 30px 18px 24px 18px; }
-      .section { padding: 20px 16px; }
-      .figure-image { border-radius: 10px; }
+      .page {
+        width: 99vw;
+        padding: 0 8px;
+      }
+
+      .hero {
+        padding: 30px 18px 24px 18px;
+      }
+
+      .section {
+        padding: 20px 16px;
+      }
+
+      .figure-image {
+        border-radius: 10px;
+      }
     }
   </style>
 </head>
@@ -204,17 +229,18 @@
       <a href="#figure1" data-target="figure1">Figure 1</a>
       <a href="#figure2" data-target="figure2">Figure 2</a>
       <a href="#figure3" data-target="figure3">Figure 3</a>
+      <a href="#figure4" data-target="figure4">Figure 4</a>
     </div>
 
     <div class="section" id="figure1">
       <h2>Figure 1</h2>
       <div class="figure-wrap">
-        <img class="figure-image" src="../assets/1_0.png" alt="Reviewer 1 OOD qualitative results">
+        <img class="figure-image" src="assets/1_1.png" alt="Figure 1">
         <div class="caption-box">
-          <div class="caption-tag">Out-of-Distribution Observation Generation</div>
+          <div class="caption-tag">Figure 1</div>
           <div class="caption-text">
-            <p><strong>Preliminary qualitative results under object-pose and lighting variations.</strong> We show the cases to clarify whether ViMoGen can extend beyond the primary setting studied in the main paper. <strong>Top:</strong> the target object is rotated by 90° (<strong>object pose variation</strong>). <strong>Bottom:</strong> additional illumination is introduced (<strong>lighting variation</strong>).</p>
-            <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong>, although the visual quality remains imperfect. These examples provide <strong>preliminary evidence</strong> that ViMoGen can generalize beyond the default setting, while indicating that robustness under broader pose and appearance changes still deserves further study. Exploring stronger generalization under such variations is an important direction for future work.</p>
+            <p><strong>Qualitative comparison between Tesseract and ViMoGen on real-robot interaction generation.</strong></p>
+            <p><strong>In the <strong>Tesseract</strong> case (<strong>top</strong>), the interaction region exhibits noticeable deformation, and the generated trajectory does not consistently follow the task instruction. In contrast, <strong>ViMoGen</strong> (<strong>bottom</strong>) produces more coherent interaction dynamics and better preserves the intended manipulation process. This comparison provides qualitative evidence that incorporating an explicit <strong>motion prior</strong> helps improve local interaction consistency and instruction adherence during generation.</strong></p>
           </div>
         </div>
       </div>
@@ -223,13 +249,11 @@
     <div class="section" id="figure2">
       <h2>Figure 2</h2>
       <div class="figure-wrap">
-        <img class="figure-image" src="../assets/1_1.png" alt="Reviewer 1 real-robot qualitative results">
+        <img class="figure-image" src="assets/1_2.png" alt="Figure 2">
         <div class="caption-box">
-          <div class="caption-tag">Real-World Experiments</div>
+          <div class="caption-tag">Figure 2</div>
           <div class="caption-text">
-            <p><strong>Preliminary real-robot qualitative results of ViMoGen.</strong></p>
-            <p>We show two representative real-robot cases to clarify whether ViMoGen can also apply beyond simulation. <strong>Top:</strong> a <strong>pick-and-place</strong> example, where the robot picks up the yellow cube and places it into the red bowl. <strong>Bottom:</strong> a <strong>stacking</strong> example, where the robot picks up the yellow cube and places it on top of the purple cube.</p>
-            <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong> on real-robot scenes, although the visual quality is not perfect. These examples provide preliminary evidence that our method can extend to real-robot settings and produce usable observations beyond the simulated setup.</p>
+            <p><strong>Preliminary qualitative results under object-pose and lighting variations.</strong> We show the cases to clarify whether ViMoGen can extend beyond the primary setting studied in the main paper. <strong>Top:</strong> the target object is rotated by 90° (<strong>object pose variation</strong>). <strong>Bottom:</strong> additional illumination is introduced (<strong>lighting variation</strong>). In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong>, although the visual quality remains imperfect. These examples provide <strong>preliminary evidence</strong> that ViMoGen can generalize beyond the default setting, while indicating that robustness under broader pose and appearance changes still deserves further study. Exploring stronger generalization under such variations is an important direction for future work.</p>
           </div>
         </div>
       </div>
@@ -237,26 +261,62 @@
 
     <div class="section" id="figure3">
       <h2>Figure 3</h2>
-      <div class="placeholder">Content for Figure 3 will be added here.</div>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/1_3.png" alt="Figure 3">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 3</div>
+          <div class="caption-text">
+            <p><strong>Figure: Preliminary real-robot qualitative results of ViMoGen.</strong> <strong>Figure: Preliminary real-robot qualitative results of ViMoGen.</strong></p>
+            <p>We show two representative real-robot cases to clarify whether ViMoGen can also apply beyond simulation. <strong>Top:</strong> a <strong>pick-and-place</strong> example, where the robot picks up the yellow cube and places it into the red bowl. <strong>Bottom:</strong> a <strong>stacking</strong> example, where the robot picks up the yellow cube and places it on top of the purple cube. In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong> on real-robot scenes, although the visual quality is not perfect. These examples provide preliminary evidence that our method can extend to real-robot settings and produce usable observations beyond the simulated setup.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="section" id="figure4">
+      <h2>Figure 4</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/1_4.png" alt="Figure 4">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 4</div>
+          <div class="caption-text">
+            <p><strong>Caption to be added.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <script>
     function setupFloatingNav(sectionIds) {
-      const navLinks = document.querySelectorAll('.floating-nav a');
-      const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      const navLinks = document.querySelectorAll(".floating-nav a");
+      const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
       function setActive(sectionId) {
-        navLinks.forEach(link => link.classList.toggle('active', link.dataset.target === sectionId));
+        navLinks.forEach(link => {
+          link.classList.toggle("active", link.dataset.target === sectionId);
+        });
       }
-      if (sections.length === 0) return;
+
       const observer = new IntersectionObserver((entries) => {
-        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) setActive(visible[0].target.id);
-      }, { threshold: [0.2, 0.35, 0.5, 0.7] });
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      }, {
+        threshold: [0.2, 0.35, 0.5, 0.7]
+      });
+
       sections.forEach(section => observer.observe(section));
-      setActive(sections[0].id);
+      if (sections.length > 0) setActive(sections[0].id);
     }
-    setupFloatingNav(['figure1', 'figure2', 'figure3']);
+
+    setupFloatingNav(["figure1", "figure2", "figure3", "figure4"]);
   </script>
 </body>
 </html>

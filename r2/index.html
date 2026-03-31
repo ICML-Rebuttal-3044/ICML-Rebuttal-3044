@@ -201,14 +201,47 @@
     </div>
 
     <div class="floating-nav">
-      <a href="#main" data-target="main">Reviewer 2</a>
+      <a href="#figure1" data-target="figure1">Figure 1</a>
+      <a href="#figure2" data-target="figure2">Figure 2</a>
+      <a href="#figure3" data-target="figure3">Figure 3</a>
     </div>
 
-    <div class="section" id="main">
-      <h2>Reviewer 2</h2>
-      <div class="placeholder">Content for Reviewer 2 will be added here.</div>
+    <div class="section" id="figure1">
+      <h2>Figure 1</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/2_0.png" alt="Reviewer 2 figure 1">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 1</div>
+          <div class="placeholder">Caption for Figure 1 will be added here.</div>
+        </div>
+      </div>
     </div>
 
+    <div class="section" id="figure2">
+      <h2>Figure 2</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/2_1.png" alt="Reviewer 2 figure 2">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 2</div>
+          <div class="caption-text">
+            <p><strong>Effect of real-data spatial coverage on downstream policy performance.</strong></p>
+            <p>We evaluate downstream policies using <strong>only real training data</strong> to isolate the effect of spatial coverage. For each test location, we execute the policy <strong>10 times</strong> and record the number of successful trials, visualized as the green coverage map. Comparing <strong>sparse</strong> and <strong>dense</strong> real-data distributions, both <strong>OFT</strong> and <strong>$\pi_{0.5}$</strong> benefit from broader spatial coverage, while the gain is noticeably larger for <strong>$\pi_{0.5}$</strong>.</p>
+            <p>This suggests that the observed performance differences are more likely due to <strong>architectural differences in handling spatial priors and artifacts</strong>, rather than simply additional “noise.” These results further motivate spatially targeted data generation for improving downstream robustness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="figure3">
+      <h2>Figure 3</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/2_2.png" alt="Reviewer 2 figure 3">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 3</div>
+          <div class="placeholder">Caption for Figure 3 will be added here.</div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
     function setupFloatingNav(sectionIds) {
@@ -225,7 +258,7 @@
       sections.forEach(section => observer.observe(section));
       setActive(sections[0].id);
     }
-    setupFloatingNav(['main']);
+    setupFloatingNav(['figure1', 'figure2', 'figure3']);
   </script>
 </body>
 </html>
