@@ -201,13 +201,6 @@
       flex-direction: column;
       gap: 10px;
       z-index: 1000;
-    }
-
-    .floating-nav.left {
-      left: 16px;
-    }
-
-    .floating-nav.right {
       right: 16px;
     }
 
@@ -277,12 +270,7 @@
   </style>
 </head>
 <body>
-  <div class="floating-nav left">
-    <a href="#ood-section" data-target="ood-section">OOD Observation Generation</a>
-    <a href="#real-world-section" data-target="real-world-section">Real-World Experiments</a>
-  </div>
-
-  <div class="floating-nav right">
+  <div class="floating-nav">
     <a href="#ood-section" data-target="ood-section">OOD Observation Generation</a>
     <a href="#real-world-section" data-target="real-world-section">Real-World Experiments</a>
   </div>
@@ -324,8 +312,8 @@
         <div class="control-stack">
           <div class="toggle-group" id="lighting-case-buttons">
             <button class="toggle-btn active" id="btn-light-case1">Case 1: BBQ Sauce</button>
-            <button class="toggle-btn" id="btn-light-case2">Case 2: Chocolate Pudding</button>
-            <button class="toggle-btn" id="btn-light-case3">Case 3: Milk</button>
+            <button class="toggle-btn" id="btn-light-case2">Case 2: Tomato Sauce</button>
+            <button class="toggle-btn" id="btn-light-case3">Case 3: Chocolate Pudding</button>
           </div>
         </div>
 
@@ -396,21 +384,18 @@
 
       const cases = [
         {
-          caseIndex: 1,
           objectName: "bbq sauce",
           taskText: "pick up the bbq sauce and place it in the basket",
           prefix45: "rot_0",
           prefix90: "rot_1"
         },
         {
-          caseIndex: 2,
           objectName: "chocolate pudding",
           taskText: "pick up the chocolate pudding and place it in the basket",
           prefix45: "rot_2",
           prefix90: "rot_3"
         },
         {
-          caseIndex: 3,
           objectName: "milk",
           taskText: "pick up the milk and place it in the basket",
           prefix45: "rot_4",
@@ -423,12 +408,14 @@
 
       function updateButtons() {
         caseButtons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        angleButtons.forEach((btn, idx) => btn.classList.toggle("active", (idx === 0 && currentAngle === 45) || (idx === 1 && currentAngle === 90)));
+        angleButtons.forEach((btn, idx) =>
+          btn.classList.toggle("active", (idx === 0 && currentAngle === 45) || (idx === 1 && currentAngle === 90))
+        );
       }
 
       function updateCaption() {
         const item = cases[currentCase];
-        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”. (目标对象: ${item.objectName})`;
+        caption.innerHTML = `Task: “${item.taskText}”. (Target object: ${item.objectName})`;
       }
 
       function render() {
@@ -469,22 +456,16 @@
 
       const cases = [
         {
-          caseIndex: 1,
-          objectName: "bbq sauce",
-          taskText: "pick up the bbq sauce and place it in the basket",
-          prefix: "light_0"
+          prefix: "light_0",
+          taskText: "pick up the bbq sauce and place it in the basket"
         },
         {
-          caseIndex: 2,
-          objectName: "chocolate pudding",
-          taskText: "pick up the chocolate pudding and place it in the basket",
-          prefix: "light_1"
+          prefix: "light_2",
+          taskText: "pick up the tomato sauce and place it in the basket"
         },
         {
-          caseIndex: 3,
-          objectName: "milk",
-          taskText: "pick up the milk and place it in the basket",
-          prefix: "light_2"
+          prefix: "light_1",
+          taskText: "pick up the chocolate pudding and place it in the basket"
         }
       ];
 
@@ -494,7 +475,7 @@
         const item = cases[currentCase];
         renderImageSeries("gallery-lighting", item.prefix);
         buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”. (目标对象: ${item.objectName})`;
+        caption.innerHTML = `Task: “${item.taskText}”.`;
       }
 
       buttons.forEach((btn, idx) => {
@@ -523,16 +504,16 @@
       ];
 
       const cases = [
-        { caseIndex: 1, prefix: "real_0", taskText: "Instruction 1" },
-        { caseIndex: 2, prefix: "real_1", taskText: "Instruction 2" },
-        { caseIndex: 3, prefix: "real_2", taskText: "Instruction 3" },
-        { caseIndex: 4, prefix: "real_3", taskText: "Instruction 4" },
-        { caseIndex: 5, prefix: "real_4", taskText: "Instruction 5" },
-        { caseIndex: 6, prefix: "real_5", taskText: "Instruction 6" },
-        { caseIndex: 7, prefix: "real_6", taskText: "Instruction 7" },
-        { caseIndex: 8, prefix: "real_7", taskText: "Instruction 8" },
-        { caseIndex: 9, prefix: "real_8", taskText: "Instruction 9" },
-        { caseIndex: 10, prefix: "real_9", taskText: "Instruction 10" }
+        { prefix: "real_0", taskText: "pick yellow cube and place in blue bowl." },
+        { prefix: "real_1", taskText: "pick yellow cube and place in red bowl." },
+        { prefix: "real_2", taskText: "pick green cube and place in red bowl." },
+        { prefix: "real_3", taskText: "pick purple cube and place in red bowl." },
+        { prefix: "real_4", taskText: "pick red cube and place in red bowl." },
+        { prefix: "real_5", taskText: "pick green cube and place in blue bowl." },
+        { prefix: "real_6", taskText: "Pick up the yellow cube and place it on top of the purple cube." },
+        { prefix: "real_7", taskText: "pick green cylinder and place in red bowl." },
+        { prefix: "real_8", taskText: "pick green cylinder and place in blue bowl." },
+        { prefix: "real_9", taskText: "pick purple cube and place in blue bowl." }
       ];
 
       let currentCase = 0;
@@ -541,7 +522,7 @@
         const item = cases[currentCase];
         renderImageSeries("gallery-real", item.prefix);
         buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Case ${item.caseIndex}: Task: “${item.taskText}”.`;
+        caption.innerHTML = `Task: “${item.taskText}”`;
       }
 
       buttons.forEach((btn, idx) => {
