@@ -13,6 +13,8 @@
       --border: #e2e8f0;
       --accent: #1f4e79;
       --accent-light: #eef4fb;
+      --tab-bg: #eaf1fb;
+      --tab-text: #3973e6;
       --shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
       --radius: 14px;
     }
@@ -47,7 +49,7 @@
       box-shadow: var(--shadow);
       padding: 42px 36px 30px 36px;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
@@ -71,6 +73,64 @@
       color: var(--subtext);
     }
 
+    .reviewer-nav-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .reviewer-nav-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+
+    .reviewer-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .reviewer-tab {
+      border: none;
+      background: var(--tab-bg);
+      color: var(--tab-text);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: inset 0 0 0 1px rgba(57, 115, 230, 0.06);
+    }
+
+    .reviewer-tab:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.98);
+    }
+
+    .reviewer-tab.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 14px rgba(31, 78, 121, 0.18);
+    }
+
+    .reviewer-panel {
+      display: none;
+    }
+
+    .reviewer-panel.active {
+      display: block;
+    }
+
     .section {
       background: var(--card);
       border: 1px solid var(--border);
@@ -78,7 +138,6 @@
       box-shadow: var(--shadow);
       padding: 28px;
       margin-bottom: 26px;
-      scroll-margin-top: 26px;
     }
 
     .section h2 {
@@ -89,60 +148,23 @@
       padding-bottom: 10px;
     }
 
-    .subblock {
-      border: 1px solid #e8edf3;
-      background: #fcfdff;
-      border-radius: 14px;
-      padding: 22px 20px;
-      margin-top: 18px;
+    .figure-wrap {
+      margin-top: 6px;
     }
 
-    .subblock h3 {
-      margin: 0 0 14px 0;
-      font-size: 20px;
-      color: #173a5a;
-      font-weight: 700;
-    }
-
-    .control-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .toggle-group {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .toggle-btn {
-      border: 1px solid #d7e3f0;
-      background: #f7fafc;
-      color: #374151;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .toggle-btn:hover {
-      background: #eef4fb;
-      border-color: #c7d7e8;
-    }
-
-    .toggle-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-      box-shadow: 0 2px 10px rgba(31, 78, 121, 0.18);
+    .figure-image {
+      width: 100%;
+      max-width: 1400px;
+      display: block;
+      margin: 0 auto 18px auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     }
 
     .caption-box {
-      margin-bottom: 18px;
+      margin-top: 10px;
       background: var(--accent-light);
       border: 1px solid #d9e6f5;
       border-left: 5px solid var(--accent);
@@ -161,7 +183,7 @@
       border: 1px solid #d6e2f0;
       border-radius: 999px;
       padding: 4px 10px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .caption-text {
@@ -171,72 +193,21 @@
       font-weight: 500;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-      gap: 14px;
+    .caption-text p {
+      margin: 0 0 10px 0;
     }
 
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #fafafa;
-      display: block;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    .caption-text p:last-child {
+      margin-bottom: 0;
     }
 
-    .gallery img:hover {
-      transform: scale(1.015);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    }
-
-    .floating-nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-      right: 16px;
-    }
-
-    .floating-nav a {
-      text-decoration: none;
-      color: var(--accent);
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(215, 227, 240, 0.9);
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      opacity: 0.38;
-      transition: all 0.22s ease;
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-
-    .floating-nav a:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
-    }
-
-    .floating-nav a.active {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.96);
-      border-color: #c9d9ea;
-      color: var(--accent);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    @media (max-width: 1400px) {
-      .floating-nav {
-        display: none;
-      }
+    .placeholder {
+      padding: 18px 20px;
+      border: 1px dashed #cfd8e3;
+      border-radius: 12px;
+      background: #fbfcfe;
+      color: var(--subtext);
+      font-size: 15px;
     }
 
     @media (max-width: 900px) {
@@ -253,28 +224,23 @@
         padding: 20px 16px;
       }
 
-      .subblock {
-        padding: 18px 14px;
+      .reviewer-nav-card {
+        padding: 16px;
+        gap: 12px;
       }
 
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-        gap: 10px;
+      .reviewer-tab {
+        padding: 10px 16px;
+        font-size: 14px;
       }
 
-      .toggle-btn {
-        padding: 7px 12px;
-        font-size: 13px;
+      .figure-image {
+        border-radius: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="floating-nav">
-    <a href="#ood-section" data-target="ood-section">OOD Observation Generation</a>
-    <a href="#real-world-section" data-target="real-world-section">Real-World Experiments</a>
-  </div>
-
   <div class="page">
     <div class="hero">
       <h1>ViMoGen: Enhancing VLA Post-Training via Kinematics-Aware Video Synthesis</h1>
@@ -282,296 +248,94 @@
       <div class="subsubtitle">Anonymous Author</div>
     </div>
 
-    <div class="section" id="ood-section">
-      <h2>Out-of-Distribution Observation Generation</h2>
-
-      <div class="subblock">
-        <h3>Target-Object Rotation Setting</h3>
-        <div class="control-stack">
-          <div class="toggle-group" id="rotation-case-buttons">
-            <button class="toggle-btn active" id="btn-rot-case1">Case 1: BBQ Sauce</button>
-            <button class="toggle-btn" id="btn-rot-case2">Case 2: Chocolate Pudding</button>
-            <button class="toggle-btn" id="btn-rot-case3">Case 3: Milk</button>
-          </div>
-          <div class="toggle-group" id="rotation-angle-buttons">
-            <button class="toggle-btn active" id="btn-rot-45">45°</button>
-            <button class="toggle-btn" id="btn-rot-90">90°</button>
-          </div>
-        </div>
-
-        <div class="caption-box">
-          <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-rotation"></p>
-        </div>
-
-        <div class="gallery" id="gallery-rotation"></div>
-      </div>
-
-      <div class="subblock">
-        <h3>Scene Lighting Perturbation Setting: Shadowed Lighting</h3>
-        <div class="control-stack">
-          <div class="toggle-group" id="lighting-case-buttons">
-            <button class="toggle-btn active" id="btn-light-case1">Case 1: Alphabet Soup</button>
-            <button class="toggle-btn" id="btn-light-case2">Case 2: Tomato Sauce</button>
-            <button class="toggle-btn" id="btn-light-case3">Case 3: Chocolate Pudding</button>
-          </div>
-        </div>
-
-        <div class="caption-box">
-          <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-lighting"></p>
-        </div>
-
-        <div class="gallery" id="gallery-lighting"></div>
+    <div class="reviewer-nav-card">
+      <div class="reviewer-nav-label">Jump to:</div>
+      <div class="reviewer-tabs">
+        <button class="reviewer-tab active" data-reviewer="reviewer1">Reviewer 1</button>
+        <button class="reviewer-tab" data-reviewer="reviewer2">Reviewer 2</button>
+        <button class="reviewer-tab" data-reviewer="reviewer3">Reviewer 3</button>
+        <button class="reviewer-tab" data-reviewer="reviewer4">Reviewer 4</button>
       </div>
     </div>
 
-    <div class="section" id="real-world-section">
-      <h2>Real-World Experiments</h2>
+    <div class="reviewer-panel active" id="reviewer1">
+      <div class="section">
+        <h2>Out-of-Distribution Observation Generation</h2>
 
-      <div class="subblock">
-        <h3>Observation Generation</h3>
-        <div class="control-stack">
-          <div class="toggle-group" id="real-case-buttons">
-            <button class="toggle-btn active" id="btn-real-case1">Case 1</button>
-            <button class="toggle-btn" id="btn-real-case2">Case 2</button>
-            <button class="toggle-btn" id="btn-real-case3">Case 3</button>
-            <button class="toggle-btn" id="btn-real-case4">Case 4</button>
-            <button class="toggle-btn" id="btn-real-case5">Case 5</button>
-            <button class="toggle-btn" id="btn-real-case6">Case 6</button>
-            <button class="toggle-btn" id="btn-real-case7">Case 7</button>
-            <button class="toggle-btn" id="btn-real-case8">Case 8</button>
-            <button class="toggle-btn" id="btn-real-case9">Case 9</button>
-            <button class="toggle-btn" id="btn-real-case10">Case 10</button>
+        <div class="figure-wrap">
+          <img class="figure-image" src="assets/1_0.jpg" alt="Reviewer 1 OOD qualitative results">
+
+          <div class="caption-box">
+            <div class="caption-tag">Figure 1</div>
+            <div class="caption-text">
+              <p><strong>Preliminary qualitative results under object-pose and lighting variations.</strong> We show the cases to clarify whether ViMoGen can extend beyond the primary setting studied in the main paper. <strong>Top:</strong> the target object is rotated by 90° (<strong>object pose variation</strong>). <strong>Bottom:</strong> additional illumination is introduced (<strong>lighting variation</strong>).</p>
+              <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong>, although the visual quality remains imperfect. These examples provide <strong>preliminary evidence</strong> that ViMoGen can generalize beyond the default setting, while indicating that robustness under broader pose and appearance changes still deserves further study. Exploring stronger generalization under such variations is an important direction for future work.</p>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="caption-box">
-          <div class="caption-tag">Current setting</div>
-          <p class="caption-text" id="caption-real"></p>
+      <div class="section">
+        <h2>Real-World Experiments</h2>
+
+        <div class="figure-wrap">
+          <img class="figure-image" src="assets/1_1.jpg" alt="Reviewer 1 real-robot qualitative results">
+
+          <div class="caption-box">
+            <div class="caption-tag">Figure 2</div>
+            <div class="caption-text">
+              <p><strong>Preliminary real-robot qualitative results of ViMoGen.</strong></p>
+              <p><strong>Figure: Preliminary real-robot qualitative results of ViMoGen.</strong></p>
+              <p>We show two representative real-robot cases to clarify whether ViMoGen can also apply beyond simulation. <strong>Top:</strong> a <strong>pick-and-place</strong> example, where the robot picks up the yellow cube and places it into the red bowl. <strong>Bottom:</strong> a <strong>stacking</strong> example, where the robot picks up the yellow cube and places it on top of the purple cube.</p>
+              <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong> on real-robot scenes, although the visual quality is not perfect. These examples provide preliminary evidence that our method can extend to real-robot settings and produce usable observations beyond the simulated setup.</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="gallery" id="gallery-real"></div>
+    <div class="reviewer-panel" id="reviewer2">
+      <div class="section">
+        <h2>Reviewer 2</h2>
+        <div class="placeholder">Content for Reviewer 2 will be added here.</div>
+      </div>
+    </div>
+
+    <div class="reviewer-panel" id="reviewer3">
+      <div class="section">
+        <h2>Reviewer 3</h2>
+        <div class="placeholder">Content for Reviewer 3 will be added here.</div>
+      </div>
+    </div>
+
+    <div class="reviewer-panel" id="reviewer4">
+      <div class="section">
+        <h2>Reviewer 4</h2>
+        <div class="placeholder">Content for Reviewer 4 will be added here.</div>
       </div>
     </div>
   </div>
 
   <script>
-    function renderImageSeries(galleryId, prefix) {
-      const gallery = document.getElementById(galleryId);
-      gallery.innerHTML = "";
-      for (let i = 0; i <= 36; i++) {
-        const img = document.createElement("img");
-        img.src = `assets/${prefix}_${i}.jpg`;
-        img.alt = `${prefix}_${i}`;
-        img.loading = "lazy";
-        gallery.appendChild(img);
-      }
-    }
+    const reviewerTabs = document.querySelectorAll(".reviewer-tab");
+    const reviewerPanels = document.querySelectorAll(".reviewer-panel");
 
-    function setupRotationGallery() {
-      const caption = document.getElementById("caption-rotation");
+    reviewerTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.reviewer;
 
-      const caseButtons = [
-        document.getElementById("btn-rot-case1"),
-        document.getElementById("btn-rot-case2"),
-        document.getElementById("btn-rot-case3")
-      ];
-      const angleButtons = [
-        document.getElementById("btn-rot-45"),
-        document.getElementById("btn-rot-90")
-      ];
+        reviewerTabs.forEach(btn => btn.classList.remove("active"));
+        reviewerPanels.forEach(panel => panel.classList.remove("active"));
 
-      const cases = [
-        {
-          objectName: "bbq sauce",
-          taskText: "pick up the bbq sauce and place it in the basket",
-          prefix45: "rot_0",
-          prefix90: "rot_1"
-        },
-        {
-          objectName: "chocolate pudding",
-          taskText: "pick up the chocolate pudding and place it in the basket",
-          prefix45: "rot_2",
-          prefix90: "rot_3"
-        },
-        {
-          objectName: "milk",
-          taskText: "pick up the milk and place it in the basket",
-          prefix45: "rot_4",
-          prefix90: "rot_5"
-        }
-      ];
+        tab.classList.add("active");
+        document.getElementById(target).classList.add("active");
 
-      let currentCase = 0;
-      let currentAngle = 45;
-
-      function updateButtons() {
-        caseButtons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        angleButtons.forEach((btn, idx) =>
-          btn.classList.toggle("active", (idx === 0 && currentAngle === 45) || (idx === 1 && currentAngle === 90))
-        );
-      }
-
-      function updateCaption() {
-        const item = cases[currentCase];
-        caption.innerHTML = `Task: "${item.taskText}". (Target object: ${item.objectName})`;
-      }
-
-      function render() {
-        const item = cases[currentCase];
-        const prefix = currentAngle === 45 ? item.prefix45 : item.prefix90;
-        renderImageSeries("gallery-rotation", prefix);
-        updateButtons();
-        updateCaption();
-      }
-
-      caseButtons.forEach((btn, idx) => {
-        btn.addEventListener("click", () => {
-          currentCase = idx;
-          render();
+        document.querySelector(".reviewer-nav-card").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
       });
-
-      document.getElementById("btn-rot-45").addEventListener("click", () => {
-        currentAngle = 45;
-        render();
-      });
-
-      document.getElementById("btn-rot-90").addEventListener("click", () => {
-        currentAngle = 90;
-        render();
-      });
-
-      render();
-    }
-
-    function setupLightingGallery() {
-      const caption = document.getElementById("caption-lighting");
-      const buttons = [
-        document.getElementById("btn-light-case1"),
-        document.getElementById("btn-light-case2"),
-        document.getElementById("btn-light-case3")
-      ];
-
-      const cases = [
-        {
-          prefix: "light_0",
-          taskText: "pick up the alphabet soup and place it in the basket"
-        },
-        {
-          prefix: "light_1",
-          taskText: "pick up the tomato sauce and place it in the basket"
-        },
-        {
-          prefix: "light_2",
-          taskText: "pick up the chocolate pudding and place it in the basket"
-        }
-      ];
-
-      let currentCase = 0;
-
-      function render() {
-        const item = cases[currentCase];
-        renderImageSeries("gallery-lighting", item.prefix);
-        buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Task: "${item.taskText}".`;
-      }
-
-      buttons.forEach((btn, idx) => {
-        btn.addEventListener("click", () => {
-          currentCase = idx;
-          render();
-        });
-      });
-
-      render();
-    }
-
-    function setupRealGallery() {
-      const caption = document.getElementById("caption-real");
-      const buttons = [
-        document.getElementById("btn-real-case1"),
-        document.getElementById("btn-real-case2"),
-        document.getElementById("btn-real-case3"),
-        document.getElementById("btn-real-case4"),
-        document.getElementById("btn-real-case5"),
-        document.getElementById("btn-real-case6"),
-        document.getElementById("btn-real-case7"),
-        document.getElementById("btn-real-case8"),
-        document.getElementById("btn-real-case9"),
-        document.getElementById("btn-real-case10")
-      ];
-
-      const cases = [
-        { prefix: "real_0", taskText: "pick yellow cube and place in blue bowl" },
-        { prefix: "real_1", taskText: "pick yellow cube and place in red bowl" },
-        { prefix: "real_2", taskText: "pick green cube and place in red bowl" },
-        { prefix: "real_3", taskText: "pick purple cube and place in red bowl" },
-        { prefix: "real_4", taskText: "pick red cube and place in red bowl" },
-        { prefix: "real_5", taskText: "pick green cube and place in blue bowl" },
-        { prefix: "real_6", taskText: "Pick up the yellow cube and place it on top of the purple cube" },
-        { prefix: "real_7", taskText: "pick green cylinder and place in red bowl" },
-        { prefix: "real_8", taskText: "pick green cylinder and place in blue bowl" },
-        { prefix: "real_9", taskText: "pick purple cube and place in blue bowl" }
-      ];
-
-      let currentCase = 0;
-
-      function render() {
-        const item = cases[currentCase];
-        renderImageSeries("gallery-real", item.prefix);
-        buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Task: "${item.taskText}".`;
-      }
-
-      buttons.forEach((btn, idx) => {
-        btn.addEventListener("click", () => {
-          currentCase = idx;
-          render();
-        });
-      });
-
-      render();
-    }
-
-    function setupFloatingNav() {
-      const sections = [
-        { id: "ood-section" },
-        { id: "real-world-section" }
-      ];
-      const navLinks = document.querySelectorAll(".floating-nav a");
-
-      function setActive(sectionId) {
-        navLinks.forEach(link => {
-          link.classList.toggle("active", link.dataset.target === sectionId);
-        });
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        const visible = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible.length > 0) {
-          setActive(visible[0].target.id);
-        }
-      }, {
-        threshold: [0.2, 0.35, 0.5, 0.7]
-      });
-
-      sections.forEach(section => {
-        const el = document.getElementById(section.id);
-        if (el) observer.observe(el);
-      });
-
-      setActive("ood-section");
-    }
-
-    setupRotationGallery();
-    setupLightingGallery();
-    setupRealGallery();
-    setupFloatingNav();
+    });
   </script>
 </body>
 </html>
