@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ViMoGen Rebuttal Link</title>
+  <title>ViMoGen Rebuttal Link - Reviewer 3</title>
   <style>
     :root {
       --bg: #f7f8fa;
@@ -17,8 +17,14 @@
       --radius: 14px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -128,16 +134,12 @@
       font-weight: 500;
     }
 
-    .caption-text p { margin: 0 0 10px 0; }
-    .caption-text p:last-child { margin-bottom: 0; }
+    .caption-text p {
+      margin: 0 0 10px 0;
+    }
 
-    .placeholder {
-      padding: 18px 20px;
-      border: 1px dashed #cfd8e3;
-      border-radius: 12px;
-      background: #fbfcfe;
-      color: var(--subtext);
-      font-size: 15px;
+    .caption-text p:last-child {
+      margin-bottom: 0;
     }
 
     .floating-nav {
@@ -181,14 +183,28 @@
     }
 
     @media (max-width: 1400px) {
-      .floating-nav { display: none; }
+      .floating-nav {
+        display: none;
+      }
     }
 
     @media (max-width: 900px) {
-      .page { width: 99vw; padding: 0 8px; }
-      .hero { padding: 30px 18px 24px 18px; }
-      .section { padding: 20px 16px; }
-      .figure-image { border-radius: 10px; }
+      .page {
+        width: 99vw;
+        padding: 0 8px;
+      }
+
+      .hero {
+        padding: 30px 18px 24px 18px;
+      }
+
+      .section {
+        padding: 20px 16px;
+      }
+
+      .figure-image {
+        border-radius: 10px;
+      }
     }
   </style>
 </head>
@@ -201,31 +217,84 @@
     </div>
 
     <div class="floating-nav">
-      <a href="#main" data-target="main">Reviewer 3</a>
+      <a href="#figure1" data-target="figure1">Figure 1</a>
+      <a href="#figure2" data-target="figure2">Figure 2</a>
+      <a href="#figure3" data-target="figure3">Figure 3</a>
     </div>
 
-    <div class="section" id="main">
-      <h2>Reviewer 3</h2>
-      <div class="placeholder">Content for Reviewer 3 will be added here.</div>
+    <div class="section" id="figure1">
+      <h2>Figure 1</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/3_1.png" alt="Figure 1">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 1</div>
+          <div class="caption-text">
+            <p><strong>Qualitative comparison between GigaWorld and ViMoGen on real-robot interaction generation.</strong></p>
+            <p>We compare <strong>GigaWorld</strong> and <strong>ViMoGen</strong> on the task <strong>“put banana on plate.”</strong> In the <strong>GigaWorld</strong> results (<strong>top</strong>), the contact region shows visible distortion, and the manipulation trajectory is less faithfully aligned with the instruction. By contrast, <strong>ViMoGen</strong> (<strong>bottom</strong>) generates more stable contact dynamics and a manipulation process that more closely matches the intended task. This comparison qualitatively suggests that introducing an explicit <strong>motion prior</strong> can improve interaction-region stability and instruction-conditioned generation.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="section" id="figure2">
+      <h2>Figure 2</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/3_2.png" alt="Figure 2">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 2</div>
+          <div class="caption-text">
+            <p><strong>Effect of the synthetic-data mixing ratio on downstream policy performance for $\pi_{0.5}$.</strong><br>
+            We study how the amount of synthetic data mixed with real data affects both <strong>in-distribution (ID)</strong> and <strong>out-of-distribution (OOD)</strong> performance of <strong>$\pi_{0.5}$</strong>. As the synthetic ratio increases, <strong>OOD performance improves substantially at first</strong>, reflecting the benefit of added diversity and broader coverage, and then <strong>gradually saturates</strong>. In contrast, <strong>ID performance remains relatively stable in the low-to-moderate mixing regime</strong>, but begins to decline as more synthetic data is added, indicating the increasing influence of synthetic bias and artifacts. This result highlights a fundamental <strong>ID–OOD trade-off</strong> in synthetic-data augmentation for <strong>$\pi_{0.5}$</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="figure3">
+      <h2>Figure 3</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="assets/3_3.png" alt="Figure 3">
+        <div class="caption-box">
+          <div class="caption-tag">Figure 3</div>
+          <div class="caption-text">
+            <p><strong>Representative failure cases involving local physical inconsistencies.</strong></p>
+            <p>We show two qualitative examples from more challenging manipulation tasks, including <strong>closing the lid of a box</strong> (<strong>top</strong>) and <strong>flipping a pot upright in the sink</strong> (<strong>bottom</strong>). Although the generated rollouts remain globally plausible, failures may still occur in the form of <strong>locally inconsistent geometry or interaction details</strong>, such as distorted contact regions or physically implausible object-tool interactions. These examples illustrate a current limitation of ViMoGen on more complex contact-rich behaviors. While <strong>KFT</strong> helps alleviate such failures to some extent by introducing a stronger motion prior, and <strong>DAG</strong> filters many low-quality samples, some borderline cases still persist. Improving physical consistency in these challenging cases remains an important direction for future work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <script>
     function setupFloatingNav(sectionIds) {
-      const navLinks = document.querySelectorAll('.floating-nav a');
-      const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      const navLinks = document.querySelectorAll(".floating-nav a");
+      const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
       function setActive(sectionId) {
-        navLinks.forEach(link => link.classList.toggle('active', link.dataset.target === sectionId));
+        navLinks.forEach(link => {
+          link.classList.toggle("active", link.dataset.target === sectionId);
+        });
       }
-      if (sections.length === 0) return;
+
       const observer = new IntersectionObserver((entries) => {
-        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) setActive(visible[0].target.id);
-      }, { threshold: [0.2, 0.35, 0.5, 0.7] });
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      }, {
+        threshold: [0.2, 0.35, 0.5, 0.7]
+      });
+
       sections.forEach(section => observer.observe(section));
-      setActive(sections[0].id);
+      if (sections.length > 0) setActive(sections[0].id);
     }
-    setupFloatingNav(['main']);
+
+    setupFloatingNav(["figure1", "figure2", "figure3"]);
   </script>
 </body>
 </html>
