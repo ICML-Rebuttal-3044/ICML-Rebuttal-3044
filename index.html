@@ -415,7 +415,7 @@
 
       function updateCaption() {
         const item = cases[currentCase];
-        caption.innerHTML = `Task: “${item.taskText}”. (Target object: ${item.objectName})`;
+        caption.innerHTML = `Task: "${item.taskText}". (Target object: ${item.objectName})`;
       }
 
       function render() {
@@ -475,7 +475,7 @@
         const item = cases[currentCase];
         renderImageSeries("gallery-lighting", item.prefix);
         buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Task: “${item.taskText}”.`;
+        caption.innerHTML = `Task: "${item.taskText}".`;
       }
 
       buttons.forEach((btn, idx) => {
@@ -522,7 +522,7 @@
         const item = cases[currentCase];
         renderImageSeries("gallery-real", item.prefix);
         buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === currentCase));
-        caption.innerHTML = `Task: “${item.taskText}”`;
+        caption.innerHTML = `Task: "${item.taskText}."`;
       }
 
       buttons.forEach((btn, idx) => {
