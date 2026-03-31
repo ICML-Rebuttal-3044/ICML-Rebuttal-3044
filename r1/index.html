@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ViMoGen Rebuttal Link</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --subtext: #5f6b7a;
+      --border: #e2e8f0;
+      --accent: #1f4e79;
+      --accent-light: #eef4fb;
+      --shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(96vw, 1850px);
+      margin: 24px auto 40px auto;
+      padding: 0 18px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 42px 36px 30px 36px;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      font-size: 18px;
+      color: #2b2b2b;
+      font-weight: 500;
+    }
+
+    .subsubtitle {
+      margin-top: 4px;
+      font-size: 15px;
+      color: var(--subtext);
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 26px;
+      scroll-margin-top: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 18px 0;
+      font-size: 28px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .figure-wrap {
+      margin-top: 6px;
+    }
+
+    .figure-image {
+      width: 100%;
+      max-width: 1400px;
+      display: block;
+      margin: 0 auto 18px auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .caption-box {
+      margin-top: 10px;
+      background: var(--accent-light);
+      border: 1px solid #d9e6f5;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .caption-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: white;
+      border: 1px solid #d6e2f0;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .caption-text {
+      margin: 0;
+      font-size: 15.5px;
+      color: #243447;
+      font-weight: 500;
+    }
+
+    .caption-text p { margin: 0 0 10px 0; }
+    .caption-text p:last-child { margin-bottom: 0; }
+
+    .placeholder {
+      padding: 18px 20px;
+      border: 1px dashed #cfd8e3;
+      border-radius: 12px;
+      background: #fbfcfe;
+      color: var(--subtext);
+      font-size: 15px;
+    }
+
+    .floating-nav {
+      position: fixed;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-nav a {
+      text-decoration: none;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(215, 227, 240, 0.9);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      opacity: 0.38;
+      transition: all 0.22s ease;
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+
+    .floating-nav a:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
+
+    .floating-nav a.active {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #c9d9ea;
+      color: var(--accent);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 1400px) {
+      .floating-nav { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .page { width: 99vw; padding: 0 8px; }
+      .hero { padding: 30px 18px 24px 18px; }
+      .section { padding: 20px 16px; }
+      .figure-image { border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <h1>ViMoGen: Enhancing VLA Post-Training via Kinematics-Aware Video Synthesis</h1>
+      <div class="subtitle">ICML 2025 Submission 3044 Rebuttal Link</div>
+      <div class="subsubtitle">Anonymous Author</div>
+    </div>
+
+    <div class="floating-nav">
+      <a href="#figure1" data-target="figure1">Figure 1</a>
+      <a href="#figure2" data-target="figure2">Figure 2</a>
+      <a href="#figure3" data-target="figure3">Figure 3</a>
+    </div>
+
+    <div class="section" id="figure1">
+      <h2>Figure 1</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="../assets/1_0.png" alt="Reviewer 1 OOD qualitative results">
+        <div class="caption-box">
+          <div class="caption-tag">Out-of-Distribution Observation Generation</div>
+          <div class="caption-text">
+            <p><strong>Preliminary qualitative results under object-pose and lighting variations.</strong> We show the cases to clarify whether ViMoGen can extend beyond the primary setting studied in the main paper. <strong>Top:</strong> the target object is rotated by 90° (<strong>object pose variation</strong>). <strong>Bottom:</strong> additional illumination is introduced (<strong>lighting variation</strong>).</p>
+            <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong>, although the visual quality remains imperfect. These examples provide <strong>preliminary evidence</strong> that ViMoGen can generalize beyond the default setting, while indicating that robustness under broader pose and appearance changes still deserves further study. Exploring stronger generalization under such variations is an important direction for future work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="figure2">
+      <h2>Figure 2</h2>
+      <div class="figure-wrap">
+        <img class="figure-image" src="../assets/1_1.png" alt="Reviewer 1 real-robot qualitative results">
+        <div class="caption-box">
+          <div class="caption-tag">Real-World Experiments</div>
+          <div class="caption-text">
+            <p><strong>Preliminary real-robot qualitative results of ViMoGen.</strong></p>
+            <p>We show two representative real-robot cases to clarify whether ViMoGen can also apply beyond simulation. <strong>Top:</strong> a <strong>pick-and-place</strong> example, where the robot picks up the yellow cube and places it into the red bowl. <strong>Bottom:</strong> a <strong>stacking</strong> example, where the robot picks up the yellow cube and places it on top of the purple cube.</p>
+            <p>In both cases, ViMoGen is able to generate <strong>task-relevant and reasonably coherent observations</strong> on real-robot scenes, although the visual quality is not perfect. These examples provide preliminary evidence that our method can extend to real-robot settings and produce usable observations beyond the simulated setup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="figure3">
+      <h2>Figure 3</h2>
+      <div class="placeholder">Content for Figure 3 will be added here.</div>
+    </div>
+
+  </div>
+  <script>
+    function setupFloatingNav(sectionIds) {
+      const navLinks = document.querySelectorAll('.floating-nav a');
+      const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      function setActive(sectionId) {
+        navLinks.forEach(link => link.classList.toggle('active', link.dataset.target === sectionId));
+      }
+      if (sections.length === 0) return;
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) setActive(visible[0].target.id);
+      }, { threshold: [0.2, 0.35, 0.5, 0.7] });
+      sections.forEach(section => observer.observe(section));
+      setActive(sections[0].id);
+    }
+    setupFloatingNav(['figure1', 'figure2', 'figure3']);
+  </script>
+</body>
+</html>
